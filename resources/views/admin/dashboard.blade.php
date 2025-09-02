@@ -6,7 +6,7 @@
 
     <!-- LES STATISTIQUES -->
     <br>
-    <h5>STATISTIQUES</h5>
+    <!-- <h5>STATISTIQUES</h5> -->
     <livewire:dashbord />
     
 </x-templates.base>

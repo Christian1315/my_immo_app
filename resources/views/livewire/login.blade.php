@@ -22,7 +22,7 @@
 
                     <h3 class="text-center text-dark">Connectez-vous ici! </h3>
                     <div class="input-group">
-                        <span class="input-group-text p-2" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>
+                        <span class="input-group-text p-2" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
                         <input type="text" value="{{old('account')}}" autofocus name="account" class="form-control" placeholder="Votre identifiant ....">
                         @error("account")
                         <span class="text-danger"> {{$message}} </span>
@@ -36,7 +36,7 @@
                         <span class="text-danger"> {{$message}} </span>
                         @enderror
                     </div>
-                    
+
                     <br>
                     <button type="submit" class="btn bg-red text-white w-100"><i class="bi bi-check2-circle"></i> SE CONNECTER</button>
                     <br>

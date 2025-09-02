@@ -18,7 +18,8 @@ span {
     border-radius: 5px !important;
 }
 
-#form-login input, #form-login .input-group-text {
+#form-login input,
+#form-login .input-group-text {
     border-radius: 0px !important;
 }
 
@@ -42,7 +43,7 @@ body {
     background-color: #f6f6f6 !important;
 }
 
-.dataTables_paginate {
+/* .dataTables_paginate {
     text-align: center !important;
     display: flex !important;
     justify-content: center;
@@ -57,7 +58,7 @@ body {
     cursor: pointer;
     margin-inline: 10px;
     align-items: center !important;
-}
+} */
 
 .badge {
     display: inline-block;
@@ -108,7 +109,7 @@ p {
 }
 
 .text-red {
-    color: #075594;
+    color: #075594 !important;
 }
 
 .bg-dark {
@@ -121,8 +122,8 @@ p {
 }
 
 .bg-red {
-    background-color: #075594;
-    color: #fff;
+    background-color: #075594 !important;
+    color: #fff !important;
 }
 
 .bg-red:hover {
@@ -133,13 +134,81 @@ p {
     transition-duration: 0.5s;
 }
 
+.nav-bg {
+    background-color: #f6f6f6 !important;
+    border: 3px solid #fff;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+}
+
 .btn {
     margin: 3px;
 }
 
-#login-page {
-    /* padding-block: 100px; */
+
+/* Styles du dropdown du user */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
+
+.dropdown-button {
+    background-color: #0056b3;
+    color: white;
+    padding: 8px; /* Augmenter la taille du padding pour donner une forme ronde */
+    border: 3px solid #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50%; /* Cette ligne rend le bouton circulaire */
+    transition: background-color 0.3s ease;
+  
+    /* display: inline-flex; Permet au bouton de se redimensionner selon son contenu */
+    /* display: flex; */
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.dropdown-button:hover {
+    background-color: #0056b3;
+    border: 3px solid #fff;
+    transition-duration: 0.5s;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); */
+    z-index: 1;
+    border-radius: 5px;
+    top: 40px;
+    left: 0;
+    left: -160px; /* Décale les éléments du dropdown vers la gauche */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+/* Fin Styles du dropdown du user */
+
 
 .main {
     position: relative !important;

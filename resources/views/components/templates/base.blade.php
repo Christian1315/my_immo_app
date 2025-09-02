@@ -7,41 +7,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="{{asset('images/edou_logo.png')}}" type="image/x-icon">
-        <link href="{{asset('fichiers/bootstrap.css')}}" rel="stylesheet">
+        <meta name="api-base-url" content="{{ env('API_BASE_URL') }}">
 
-        <!-- overlayScrollbars -->
-        <!-- <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}"> -->
+        <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/x-icon">
+        <link rel="stylesheet" href="{{ asset('fichiers/animate.min.css') }}" />
+        <title>{{ $title }}</title>
 
-        <!-- DataTables -->
-        <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-        <!-- <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}"> -->
-        <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-
-
-        <link rel="stylesheet" href="{{asset('fichiers/icon-font.min.css')}}">
-        <link rel="stylesheet" href="{{asset('fichiers/animate.min.css')}}" />
-
-
-        <title>{{$title}}</title>
-
+        <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/"> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <!-- Bootstrap core CSS -->
 
-        <!-- Custom styles for this template -->
-        <link href="{{asset('fichiers/dashbord.css')}}" rel="stylesheet">
-        <link href="{{asset('fichiers/base.css')}}" rel="stylesheet">
+        <link href="{{ asset('fichiers/bootstrap.css') }}" rel="stylesheet">
 
-        <!-- <script src="https://cdn.datatables.net/1.13.10/css/jquery.dataTables.css"></script> -->
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('fichiers/dashbord.css') }}" rel="stylesheet">
+        <link href="{{ asset('fichiers/base.css') }}" rel="stylesheet">
+
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
         <!-- select2 -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
         @livewireStyles
+        @stack("styles")
     </head>
 
     <body>
-        <nav class="navbar navbar-dark fixed-top bg-red flex-md-nowrap p-0 shadow">
+        <nav class="navbar navbar-dark fixed-top nav-bg flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0 justify-content-between" href="#">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSideBar" aria-controls="offcanvasWithBothOptions">
                     <span class="navbar-toggler-icon"></span>
@@ -50,17 +51,16 @@
                 <span>{{str_replace('_','-',env('APP_NAME'))}} </span>
             </a>
 
-            <input class="mx-2 rounded form-control form-control-dark w-100 bg-light search--bar" type="text" placeholder="Recherche" aria-label="searh">
+            <input class="mx-2 rounded form-control form-control-dark w-100 bg-light search--bar" type="text" autofocus placeholder="Recherche de liens ..." aria-label="searh">
 
-            <li style="list-style-type: none;"><a class="btn btn-sm btn-light" onclick="return confirm('Voulez-vous vraiment vous déconnecter!?')" href="{{route('logout')}}"><i class="bi bi-power"></i> Se Déconnecter</a></li>
-            <li style="list-style-type: none;"> <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal"
-                    data-bs-target="#updatePassword"><i class="bi bi-key"></i> Mot de passe</a>
-            </li>
-            <li style="list-style-type: none;">
-                <span class="border-white text-uppercase rounded-circle btn bnt-sm btn-dark">
-                    {{ auth()->user()->username }}
-                </span>
-            </li>
+            <div class="dropdown">
+                <button class="dropdown-button shadow"> {{ \Illuminate\Support\Str::limit(auth()->user()->name,4) }}</button>
+                <div class="dropdown-content">
+                    <!-- onclick="return confirm('Voulez-vous vraiment vous déconnecter!?')"  -->
+                    <a class="btn btn-sm btn-light" id="logoutBtn" href="#"><i class="bi bi-power"></i> Se Déconnecter</a>
+                    <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#updatePassword"><i class="bi bi-key"></i> Mot de passe</a>
+                </div>
+            </div>
         </nav>
 
         <div class="container-fluid">
@@ -72,6 +72,7 @@
                         </h5>
                         <button type="button" class="btn-close text-red btn btn-sm btn-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x"></i></button>
                     </div>
+
                     <div class="offcanvas-body">
                         <div class="">
                             <ul class="nav flex-column">
@@ -199,32 +200,43 @@
             <!--  -->
             <div class="row">
                 <div class="col-md-12 bg-white shadow-lg py-2 bg-white mt-5">
-                    <p class="text-center">© Copyright - <strong class="text-red">{{date("Y")}}</strong> - Réalisé par <strong class="text-red">Code4Christ </strong> </p>
+                    <p class="text-center text-dark text-sm" style="font-size: 15px;">© Copyright - <span class="badge bg-light border rounded text-red">{{date("Y")}}</span> - Réalisé par <span class="badge bg-light border rounded border text-red">Code4Christ </span> </p>
                 </div>
             </div>
         </div>
 
         @livewireScripts
-
         @stack("scripts")
     </body>
+    <script src="{{ asset('fichiers/jquery.min.js') }}"></script>
 
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{asset('fichiers/jquery.min.js')}}"></script>
     <script src="{{asset('fichiers/popper.min.js')}}"></script>
     <script src="{{asset('fichiers/bootstrap.min.js')}}"></script>
-
-    <!-- API DE GESTION DES SUM DES COLUMS DES DATATABLES -->
-    <script src="https://cdn.datatables.net/plug-ins/2.1.8/api/sum().js"></script>
 
     <script src="{{ asset('fichiers/axios.min.js') }}"></script>
 
     <!-- Select 2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <!-- overlayScrollbars -->
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+
     <!-- DataTables  & Plugins -->
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <!-- <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script> -->
+    <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
@@ -265,219 +277,276 @@
 
         $(function() {
             $("#myTable").DataTable({
-                "responsive": true,
-                "lengthChange": true,
+                    "paging": true,
+                    "responsive": true,
+                    "lengthChange": true,
+                    "autoWidth": true,
+                    "buttons": ["excel", "pdf", "print"],
+                    "order": [
+                        [0, 'desc']
+                    ],
+                    "pageLength": 15,
 
-                "autoWidth": true,
-                "buttons": ["excel", "pdf", "print"],
-                "order": [
-                    [0, 'desc']
-                ],
-                "pageLength": 10,
-
-                language: {
-                    "emptyTable": "Aucune donnée disponible dans le tableau",
-                    "lengthMenu": "Afficher _MENU_ éléments",
-                    "loadingRecords": "Chargement...",
-                    "processing": "Traitement...",
-                    "zeroRecords": "Aucun élément correspondant trouvé",
-                    "paginate": {
-                        "first": "Premier",
-                        "last": "Dernier",
-                        "previous": "Précédent",
-                        "next": "Suiv"
-                    },
-                    "aria": {
-                        "sortAscending": ": activer pour trier la colonne par ordre croissant",
-                        "sortDescending": ": activer pour trier la colonne par ordre décroissant"
-                    },
-                    "select": {
-                        "rows": {
-                            "_": "%d lignes sélectionnées",
-                            "1": "1 ligne sélectionnée"
+                    language: {
+                        "emptyTable": "Aucune donnée disponible dans le tableau",
+                        "lengthMenu": "Afficher _MENU_ éléments",
+                        "loadingRecords": "Chargement...",
+                        "processing": "Traitement...",
+                        "zeroRecords": "Aucun élément correspondant trouvé",
+                        "paginate": {
+                            "first": "Premier",
+                            "last": "Dernier",
+                            "previous": "Précédent",
+                            "next": "Suiv"
                         },
-                        "cells": {
-                            "1": "1 cellule sélectionnée",
-                            "_": "%d cellules sélectionnées"
+                        "aria": {
+                            "sortAscending": ": activer pour trier la colonne par ordre croissant",
+                            "sortDescending": ": activer pour trier la colonne par ordre décroissant"
                         },
-                        "columns": {
-                            "1": "1 colonne sélectionnée",
-                            "_": "%d colonnes sélectionnées"
-                        }
-                    },
-                    "autoFill": {
-                        "cancel": "Annuler",
-                        "fill": "Remplir toutes les cellules avec <i>%d<\/i>",
-                        "fillHorizontal": "Remplir les cellules horizontalement",
-                        "fillVertical": "Remplir les cellules verticalement"
-                    },
-                    "searchBuilder": {
-                        "conditions": {
-                            "date": {
-                                "after": "Après le",
-                                "before": "Avant le",
-                                "between": "Entre",
-                                "empty": "Vide",
-                                "equals": "Egal à",
-                                "not": "Différent de",
-                                "notBetween": "Pas entre",
-                                "notEmpty": "Non vide"
+                        "select": {
+                            "rows": {
+                                "_": "%d lignes sélectionnées",
+                                "1": "1 ligne sélectionnée"
                             },
-                            "number": {
-                                "between": "Entre",
-                                "empty": "Vide",
-                                "equals": "Egal à",
-                                "gt": "Supérieur à",
-                                "gte": "Supérieur ou égal à",
-                                "lt": "Inférieur à",
-                                "lte": "Inférieur ou égal à",
-                                "not": "Différent de",
-                                "notBetween": "Pas entre",
-                                "notEmpty": "Non vide"
+                            "cells": {
+                                "1": "1 cellule sélectionnée",
+                                "_": "%d cellules sélectionnées"
                             },
-                            "string": {
-                                "contains": "Contient",
-                                "empty": "Vide",
-                                "endsWith": "Se termine par",
-                                "equals": "Egal à",
-                                "not": "Différent de",
-                                "notEmpty": "Non vide",
-                                "startsWith": "Commence par"
-                            },
-                            "array": {
-                                "equals": "Egal à",
-                                "empty": "Vide",
-                                "contains": "Contient",
-                                "not": "Différent de",
-                                "notEmpty": "Non vide",
-                                "without": "Sans"
+                            "columns": {
+                                "1": "1 colonne sélectionnée",
+                                "_": "%d colonnes sélectionnées"
                             }
                         },
-                        "add": "Ajouter une condition",
-                        "button": {
-                            "0": "Recherche avancée",
-                            "_": "Recherche avancée (%d)"
+                        "autoFill": {
+                            "cancel": "Annuler",
+                            "fill": "Remplir toutes les cellules avec <i>%d<\/i>",
+                            "fillHorizontal": "Remplir les cellules horizontalement",
+                            "fillVertical": "Remplir les cellules verticalement"
                         },
-                        "clearAll": "Effacer tout",
-                        "condition": "Condition",
-                        "data": "Donnée",
-                        "deleteTitle": "Supprimer la règle de filtrage",
-                        "logicAnd": "Et",
-                        "logicOr": "Ou",
-                        "title": {
-                            "0": "Recherche avancée",
-                            "_": "Recherche avancée (%d)"
+                        "searchBuilder": {
+                            "conditions": {
+                                "date": {
+                                    "after": "Après le",
+                                    "before": "Avant le",
+                                    "between": "Entre",
+                                    "empty": "Vide",
+                                    "equals": "Egal à",
+                                    "not": "Différent de",
+                                    "notBetween": "Pas entre",
+                                    "notEmpty": "Non vide"
+                                },
+                                "number": {
+                                    "between": "Entre",
+                                    "empty": "Vide",
+                                    "equals": "Egal à",
+                                    "gt": "Supérieur à",
+                                    "gte": "Supérieur ou égal à",
+                                    "lt": "Inférieur à",
+                                    "lte": "Inférieur ou égal à",
+                                    "not": "Différent de",
+                                    "notBetween": "Pas entre",
+                                    "notEmpty": "Non vide"
+                                },
+                                "string": {
+                                    "contains": "Contient",
+                                    "empty": "Vide",
+                                    "endsWith": "Se termine par",
+                                    "equals": "Egal à",
+                                    "not": "Différent de",
+                                    "notEmpty": "Non vide",
+                                    "startsWith": "Commence par"
+                                },
+                                "array": {
+                                    "equals": "Egal à",
+                                    "empty": "Vide",
+                                    "contains": "Contient",
+                                    "not": "Différent de",
+                                    "notEmpty": "Non vide",
+                                    "without": "Sans"
+                                }
+                            },
+                            "add": "Ajouter une condition",
+                            "button": {
+                                "0": "Recherche avancée",
+                                "_": "Recherche avancée (%d)"
+                            },
+                            "clearAll": "Effacer tout",
+                            "condition": "Condition",
+                            "data": "Donnée",
+                            "deleteTitle": "Supprimer la règle de filtrage",
+                            "logicAnd": "Et",
+                            "logicOr": "Ou",
+                            "title": {
+                                "0": "Recherche avancée",
+                                "_": "Recherche avancée (%d)"
+                            },
+                            "value": "Valeur"
                         },
-                        "value": "Valeur"
-                    },
-                    "searchPanes": {
-                        "clearMessage": "Effacer tout",
-                        "count": "{total}",
-                        "title": "Filtres actifs - %d",
-                        "collapse": {
-                            "0": "Volet de recherche",
-                            "_": "Volet de recherche (%d)"
+                        "searchPanes": {
+                            "clearMessage": "Effacer tout",
+                            "count": "{total}",
+                            "title": "Filtres actifs - %d",
+                            "collapse": {
+                                "0": "Volet de recherche",
+                                "_": "Volet de recherche (%d)"
+                            },
+                            "countFiltered": "{shown} ({total})",
+                            "emptyPanes": "Pas de volet de recherche",
+                            "loadMessage": "Chargement du volet de recherche..."
                         },
-                        "countFiltered": "{shown} ({total})",
-                        "emptyPanes": "Pas de volet de recherche",
-                        "loadMessage": "Chargement du volet de recherche..."
-                    },
-                    "buttons": {
-                        "copyKeys": "Appuyer sur ctrl ou u2318 + C pour copier les données du tableau dans votre presse-papier.",
-                        "collection": "Collection",
-                        "colvis": "Visibilité colonnes",
-                        "colvisRestore": "Rétablir visibilité",
-                        "copy": "Copier",
-                        "copySuccess": {
-                            "1": "1 ligne copiée dans le presse-papier",
-                            "_": "%ds lignes copiées dans le presse-papier"
+                        "buttons": {
+                            "copyKeys": "Appuyer sur ctrl ou u2318 + C pour copier les données du tableau dans votre presse-papier.",
+                            "collection": "Collection",
+                            "colvis": "Visibilité colonnes",
+                            "colvisRestore": "Rétablir visibilité",
+                            "copy": "Copier",
+                            "copySuccess": {
+                                "1": "1 ligne copiée dans le presse-papier",
+                                "_": "%ds lignes copiées dans le presse-papier"
+                            },
+                            "copyTitle": "Copier dans le presse-papier",
+                            "csv": "CSV",
+                            "excel": "Excel",
+                            "pageLength": {
+                                "-1": "Afficher toutes les lignes",
+                                "_": "Afficher %d lignes"
+                            },
+                            "pdf": "PDF",
+                            "print": "Imprimer"
                         },
-                        "copyTitle": "Copier dans le presse-papier",
-                        "csv": "CSV",
-                        "excel": "Excel",
-                        "pageLength": {
-                            "-1": "Afficher toutes les lignes",
-                            "_": "Afficher %d lignes"
+                        "decimal": ",",
+                        "info": "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
+                        "infoEmpty": "Affichage de 0 à 0 sur 0 éléments",
+                        "infoThousands": ".",
+                        "search": "Rechercher:",
+                        "thousands": ".",
+                        "infoFiltered": "(filtrés depuis un total de _MAX_ éléments)",
+                        "datetime": {
+                            "previous": "Précédent",
+                            "next": "Suivant",
+                            "hours": "Heures",
+                            "minutes": "Minutes",
+                            "seconds": "Secondes",
+                            "unknown": "-",
+                            "amPm": [
+                                "am",
+                                "pm"
+                            ],
+                            "months": [
+                                "Janvier",
+                                "Fevrier",
+                                "Mars",
+                                "Avril",
+                                "Mai",
+                                "Juin",
+                                "Juillet",
+                                "Aout",
+                                "Septembre",
+                                "Octobre",
+                                "Novembre",
+                                "Decembre"
+                            ],
+                            "weekdays": [
+                                "Dim",
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Jeu",
+                                "Ven",
+                                "Sam"
+                            ]
                         },
-                        "pdf": "PDF",
-                        "print": "Imprimer"
-                    },
-                    "decimal": ",",
-                    "info": "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
-                    "infoEmpty": "Affichage de 0 à 0 sur 0 éléments",
-                    "infoThousands": ".",
-                    "search": "Rechercher:",
-                    "thousands": ".",
-                    "infoFiltered": "(filtrés depuis un total de _MAX_ éléments)",
-                    "datetime": {
-                        "previous": "Précédent",
-                        "next": "Suivant",
-                        "hours": "Heures",
-                        "minutes": "Minutes",
-                        "seconds": "Secondes",
-                        "unknown": "-",
-                        "amPm": [
-                            "am",
-                            "pm"
-                        ],
-                        "months": [
-                            "Janvier",
-                            "Fevrier",
-                            "Mars",
-                            "Avril",
-                            "Mai",
-                            "Juin",
-                            "Juillet",
-                            "Aout",
-                            "Septembre",
-                            "Octobre",
-                            "Novembre",
-                            "Decembre"
-                        ],
-                        "weekdays": [
-                            "Dim",
-                            "Lun",
-                            "Mar",
-                            "Mer",
-                            "Jeu",
-                            "Ven",
-                            "Sam"
-                        ]
-                    },
-                    "editor": {
-                        "close": "Fermer",
-                        "create": {
-                            "button": "Nouveaux",
-                            "title": "Créer une nouvelle entrée",
-                            "submit": "Envoyer"
-                        },
-                        "edit": {
-                            "button": "Editer",
-                            "title": "Editer Entrée",
-                            "submit": "Modifier"
-                        },
-                        "remove": {
-                            "button": "Supprimer",
-                            "title": "Supprimer",
-                            "submit": "Supprimer",
-                            "confirm": {
-                                "1": "etes-vous sure de vouloir supprimer 1 ligne?",
-                                "_": "etes-vous sure de vouloir supprimer %d lignes?"
+                        "editor": {
+                            "close": "Fermer",
+                            "create": {
+                                "button": "Nouveaux",
+                                "title": "Créer une nouvelle entrée",
+                                "submit": "Envoyer"
+                            },
+                            "edit": {
+                                "button": "Editer",
+                                "title": "Editer Entrée",
+                                "submit": "Modifier"
+                            },
+                            "remove": {
+                                "button": "Supprimer",
+                                "title": "Supprimer",
+                                "submit": "Supprimer",
+                                "confirm": {
+                                    "1": "etes-vous sure de vouloir supprimer 1 ligne?",
+                                    "_": "etes-vous sure de vouloir supprimer %d lignes?"
+                                }
+                            },
+                            "error": {
+                                "system": "Une erreur système s'est produite"
+                            },
+                            "multi": {
+                                "title": "Valeurs Multiples",
+                                "restore": "Rétablir Modification",
+                                "noMulti": "Ce champ peut être édité individuellement, mais ne fait pas partie d'un groupe. ",
+                                "info": "Les éléments sélectionnés contiennent différentes valeurs pour ce champ. Pour  modifier et "
                             }
-                        },
-                        "error": {
-                            "system": "Une erreur système s'est produite"
-                        },
-                        "multi": {
-                            "title": "Valeurs Multiples",
-                            "restore": "Rétablir Modification",
-                            "noMulti": "Ce champ peut être édité individuellement, mais ne fait pas partie d'un groupe. ",
-                            "info": "Les éléments sélectionnés contiennent différentes valeurs pour ce champ. Pour  modifier et "
                         }
-                    }
-                },
-            });
+                    },
+                })
+                .buttons().container().appendTo('#myTable_wrapper .col-md-6:eq(0)');
         });
+    </script>
+
+    <!--  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const dropdownButton = document.querySelector('.dropdown-button');
+        const dropdown = document.querySelector('.dropdown');
+
+        dropdownButton.addEventListener('click', function() {
+            dropdown.classList.toggle('show');
+        });
+
+        // Optional: Close dropdown if clicking outside
+        window.addEventListener('click', function(event) {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // 
+        document.getElementById("logoutBtn").addEventListener("click", function(e) {
+            Swal.fire({
+                title: "Voulez-vous vraiment vous déconnecter?",
+                showDenyButton: true,
+                // showCancelButton: true,
+                confirmButtonText: "Oui",
+                denyButtonText: `Non`
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    // Swal.fire("En cours de traitement ...");
+
+                    Swal.fire({
+                        showConfirmButton: false,
+                        footer: `<div class="spinner-border" role="status">
+                                    <span class="visually-hidden">En cours de traitement ...</span>
+                                </div>`
+                    });
+
+                    axios.get("{{route('logout')}}")
+                        .then((res) => {
+                            if (res.status) {
+                                Swal.fire("Opération réussie!", res.message, "success");
+                                window.location.href = "{{route('user.login')}}"
+                            }
+                        }).catch((error) => {
+                            Swal.fire("Opération échouée", "Une erreure est survenue lors de la déconnexion", "error");
+                            window.location.href = "{{request()->route()->uri()}}"
+                        })
+                } else if (result.isDenied) {
+                    Swal.fire("Opération rejetée !","", "info");
+                    // window.location.href = "{{request()->route()->uri()}}"
+                }
+            });
+        })
     </script>
 
     </html>

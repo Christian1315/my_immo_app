@@ -856,7 +856,8 @@
 
             $('#loading').removeAttr('hidden');
 
-            axios.get("{{env('API_BASE_URL')}}location/" + locationSelected + "/retrieve").then((response) => {
+            axios.get("{{env('API_BASE_URL')}}location/" + locationSelected + "/retrieve")
+            .then((response) => {
                 var location = response.data
                 var location_locataire = location["locataire"]
 

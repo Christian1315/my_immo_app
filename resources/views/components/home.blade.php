@@ -28,7 +28,7 @@
 
                 <div class="row">
                     <div class="col-md-12 px-0 mx-0 py-2">
-                        <p class="text-center text-dark text-sm" style="font-size: 10px;">© Copyright - <span class="badge bg-light border rounded text-red">{{date("Y")}}</span> - Réalisé par <span class="badge bg-light border rounded border text-red">Code4Christ </span> </p>
+                        <p class="text-center text-dark text-sm" style="font-size: 15px;">© Copyright - <span class="badge bg-light border rounded text-red">{{date("Y")}}</span> - Réalisé par <span class="badge bg-light border rounded border text-red">Code4Christ </span> </p>
                     </div>
                 </div>
             </div>

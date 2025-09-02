@@ -9,27 +9,29 @@
         <meta name="author" content="">
         <meta name="api-base-url" content="{{ env('API_BASE_URL') }}">
 
-        <link rel="shortcut icon" href="{{ asset('images/edou_logo.png') }}" type="image/x-icon">
-        <link rel="stylesheet" href="{{ asset('fichiers/icon-font.min.css') }}">
+        <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/x-icon">
         <link rel="stylesheet" href="{{ asset('fichiers/animate.min.css') }}" />
         <title>{{ $title }}</title>
 
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/">
+        <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/dashboard/"> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <!-- Bootstrap core CSS -->
 
         <link href="{{ asset('fichiers/bootstrap.css') }}" rel="stylesheet">
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
         <!-- Custom styles for this template -->
         <link href="{{ asset('fichiers/dashbord.css') }}" rel="stylesheet">
         <link href="{{ asset('fichiers/base.css') }}" rel="stylesheet">
 
         <!-- overlayScrollbars -->
-        <!-- <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}"> -->
+        <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
         <!-- DataTables -->
         <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-        <!-- <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}"> -->
+        <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
         <!-- select2 -->
@@ -40,7 +42,7 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-dark fixed-top bg-red flex-md-nowrap p-0 shadow">
+        <nav class="navbar navbar-dark fixed-top nav-bg flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0 justify-content-between" href="#">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasSideBar" aria-controls="offcanvasWithBothOptions">
@@ -50,9 +52,9 @@
                 <span>{{str_replace('_','-',env('APP_NAME'))}}</span>
             </a>
 
-            <marquee class="text-uppercase" behavior="alternate" style="font-size: 15px;font-weight: bold;">
+            <h6 class="text-uppercase" behavior="alternate" style="font-size: 15px;font-weight: bold;">
                 {{ $agency?->name }}
-            </marquee>
+            </h6>
 
             <li style="list-style-type: none;"><a class="btn btn-sm btn-light" onclick="return confirm('Voulez-vous vraiment vous déconnecter!?')" href="{{route('logout')}}"><i class="bi bi-power"></i> Se Déconnecter</a></li>
             <li style="list-style-type: none;"> <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal"
@@ -356,7 +358,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 bg-white shadow-lg py-2 bg-white mt-5">
-                    <p class="text-center">© Copyright - <strong class="text-red">{{date("Y")}}</strong> - Réalisé par <strong class="text-red">Code4Christ </strong> </p>
+                    <p class="text-center text-dark text-sm" style="font-size: 15px;">© Copyright - <span class="badge bg-light border rounded text-red">{{date("Y")}}</span> - Réalisé par <span class="badge bg-light border rounded border text-red">Code4Christ </span> </p>
                 </div>
             </div>
         </div>
@@ -374,14 +376,25 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- overlayScrollbars -->
-    <!-- <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script> -->
+    <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
-    <!-- API DE GESTION DES SUM DES COLUMS DES DATATABLES -->
-    <script src="https://cdn.datatables.net/plug-ins/2.1.8/api/sum().js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 
     <!-- DataTables  & Plugins -->
     <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <!-- <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script> -->
+    <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
+    <script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
 
     <!-- #### DATA TABLES -->
     <script type="text/javascript">
@@ -620,5 +633,6 @@
         });
     </script>
     @stack('scripts')
+
     </html>
 </div>
