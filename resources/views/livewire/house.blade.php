@@ -3,12 +3,12 @@
     <!-- AJOUT D'UN TYPE DE CHAMBRE -->
     <div class="text-left mb-3">
         <button type="button" class="btn btn-sm bg-light shadow rounded" data-bs-toggle="modal" data-bs-target="#room_type">
-            <i class="bi bi-cloud-plus-fill"></i> Ajouter un type de maison
+            <i class="bi bi-node-plus"></i> Ajouter un type de maison
         </button>
     </div>
 
     <!-- Modal room type-->
-    <div class="modal fade" id="room_type"
+    <div class="modal fade animate__animated animate__fadeInUp" id="room_type"
         data-bs-keyboard="false"
         tabindex="-1"
         aria-labelledby="staticBackdropLabel"
@@ -16,12 +16,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5">Type de maison</h5>
+                    <h5 class="modal-title fs-5"><i class="bi bi-node-plus"></i> Type de maison</h5>
                     <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                         <i class="bi bi-x-circle"></i>
                     </button>
                 </div>
-                <form action="{{ route('house.AddHouseType') }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('house.AddHouseType') }}" method="POST" class="needs-validation p-3 border rounded" novalidate>
                     @csrf
                     <div class="modal-body">
                         <div class="row">
@@ -59,28 +59,28 @@
         <div class="d-flex header-bar">
             <h2 class="accordion-header">
                 <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#addHouse">
-                    <i class="bi bi-cloud-plus-fill"></i> Ajouter
+                    <i class="bi bi-node-plus"></i> Ajouter
                 </button>
             </h2>
         </div>
     </div>
 
     <!-- ADD HOUSE -->
-    <div class="modal fade" id="addHouse"
+    <div class="modal fade animate__animated animate__fadeInUp" id="addHouse"
         data-bs-keyboard="false"
         tabindex="-1"
         aria-labelledby="staticBackdropLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="mb-0">Ajout d'une maison</p>
+                    <p class="mb-0"><i class="bi bi-node-plus"></i> Ajout d'une maison</p>
                     <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                         <i class="bi bi-x-circle"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('house._AddHouse') }}" method="POST" class="needs-validation" enctype="multipart/form-data" novalidate>
+                    <form action="{{ route('house._AddHouse') }}" method="POST" class="needs-validation p-3 border rounded" enctype="multipart/form-data" novalidate>
                         @csrf
                         <input type="hidden" name="agency" value="{{ $current_agency->id }}">
                         <div class="row">

@@ -1,15 +1,15 @@
 <!-- Filter by Supervisor Modal -->
-<div class="modal fade" id="filtreBySupervisor" tabindex="-1" aria-labelledby="supervisorFilterLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="filtreBySupervisor" tabindex="-1" aria-labelledby="supervisorFilterLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="supervisorFilterLabel">Filtrer par superviseur</h5>
+                <h5 class="modal-title" id="supervisorFilterLabel"><i class="bi bi-funnel"></i> Filtrer par superviseur</h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('house.FiltreHouseBySupervisor', $current_agency->id) }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('house.FiltreHouseBySupervisor', $current_agency->id) }}" method="POST" class="needs-validation p-3 border rounded" novalidate>
                     @csrf
                     <div class="mb-3">
                         <label for="supervisor" class="form-label">Choisissez un superviseur</label>
@@ -29,17 +29,17 @@
 </div>
 
 <!-- Filter by Period Modal -->
-<div class="modal fade" id="filtreByPeriod" tabindex="-1" aria-labelledby="periodFilterLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="filtreByPeriod" tabindex="-1" aria-labelledby="periodFilterLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="periodFilterLabel">Filtrer par période</h5>
+                <h5 class="modal-title" id="periodFilterLabel"><i class="bi bi-funnel"></i> Filtrer par période</h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('house.FiltreHouseByPeriode', $current_agency->id) }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('house.FiltreHouseByPeriode', $current_agency->id) }}" method="POST" class="needs-validation p-3 border rounded" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

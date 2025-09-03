@@ -5,6 +5,14 @@ const API_BASE_URL = document.querySelector('meta[name="api-base-url"]').content
 function show_rooms_fun(id) {
     $('#house_rooms').empty();
 
+    Swal.fire({
+        showConfirmButton: false,
+        footer: `<div class="spinner-border" role="status">
+                                    <span class="visually-hidden">En cours de traitement ...</span>
+                                </div>`
+    });
+
+
     axios.get(`${API_BASE_URL}house/${id}/retrieve`)
         .then((response) => {
             const house = response.data;
@@ -23,6 +31,8 @@ function show_rooms_fun(id) {
                     </li>
                 `);
             });
+
+            Swal.close()
         })
         .catch((error) => {
             console.error('Error fetching house rooms:', error);
@@ -35,7 +45,7 @@ function updateModal_fun(id) {
     axios.get(`${API_BASE_URL}house/${id}/retrieve`)
         .then((response) => {
             const house = response.data;
-            
+
             $("#update_house_fullname").html(house.name);
             $("#update-name").val(house.name);
             $("#update-longitude").val(house.longitude);
@@ -65,7 +75,7 @@ function cautionModal_fun(id) {
     axios.get(`${API_BASE_URL}house/${id}/retrieve`)
         .then((response) => {
             const house = response.data;
-            
+
             $("#caution_house_fullname").html(house.name);
             $("#caution_form")
                 .attr("action", `/house/${id}/generate_cautions_for_house_by_period`)
@@ -78,9 +88,9 @@ function cautionModal_fun(id) {
 }
 
 // Form validation
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const forms = document.querySelectorAll('.needs-validation');
-    
+
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
             if (!form.checkValidity()) {

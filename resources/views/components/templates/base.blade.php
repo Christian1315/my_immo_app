@@ -1,4 +1,6 @@
 <div>
+    @props(['title', 'active', 'agency' => null])
+
     <!doctype html>
     <html lang="fr">
 
@@ -43,12 +45,17 @@
 
     <body>
         <nav class="navbar navbar-dark fixed-top nav-bg flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0 justify-content-between" href="#">
+            <a class="d-flex navbar-brand col-sm-3 col-md-2 mr-0 justify-content-between" href="#">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSideBar" aria-controls="offcanvasWithBothOptions">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 &nbsp;
-                <span>{{str_replace('_','-',env('APP_NAME'))}} </span>
+                <div class="text-center">
+                    <span>{{str_replace('_','-',env('APP_NAME'))}} </span>
+                    @if($agency) <br>
+                    <span class="badge bg-light border rounded">{{$agency?->name}}</span>
+                    @endif
+                </div>
             </a>
 
             <input class="mx-2 rounded form-control form-control-dark w-100 bg-white search--bar" type="text" autofocus placeholder="Recherche de liens ..." aria-label="searh">
@@ -73,6 +80,7 @@
                         <button type="button" class="btn-close text-red btn btn-sm btn-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x"></i></button>
                     </div>
 
+                    @if(!$agency)
                     <div class="offcanvas-body">
                         <div class="">
                             <ul class="nav flex-column">
@@ -126,7 +134,7 @@
                                         Gestion des Rôles
                                     </a>
                                 </li>
-<!-- 
+                                <!-- 
                                 <li class="nav-item">
                                     <a class="text-white nav-link @if($active=='statistique') active @endif" href="/statistique">
                                         <i class="bi bi-bar-chart-line"></i>
@@ -137,6 +145,238 @@
                             @endif
                         </div>
                     </div>
+                    @else
+                    <div class="offcanvas-body">
+                        <div class="">
+                            <ul class="nav flex-column">
+                                <li class="">
+                                    <a class="nav-link text-white" href="/{{ crypId($agency['id']) }}/manage-agency">
+                                        <i class="bi bi-house-add-fill"></i>
+                                        Agence
+                                    </a>
+                                </li>
+
+                                <!-- Proprietaires -->
+                                @can("proprio.view")
+                                <li class="nav-item">
+                                    <a class="nav-link text-white @if($active == 'proprietor') active @endif" href="/{{crypId($agency['id'])}}/proprietor">
+                                        <i class="bi bi-person-fill-gear"></i>
+                                        Propriétaires
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- Maisons -->
+                                @can("house.view")
+                                <li class="nav-item">
+                                    <a class="nav-link text-white @if($active == 'house') active @endif" href="/{{ crypId($agency['id']) }}/house">
+                                        <i class="bi bi-house-add-fill"></i>
+                                        Maisons
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- Chambres -->
+                                @can("room.view")
+                                <li class="nav-item">
+                                    <a class="nav-link text-white @if($active == 'room') active @endif"
+                                        href="/{{ crypId($agency['id']) }}/room">
+                                        <i class="bi bi-hospital-fill"></i>
+                                        Chambres
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- Locataires -->
+                                @can("locator.view")
+                                <li class="nav-item">
+                                    <a class="nav-link text-white @if($active == 'locator') active @endif"
+                                        href="/{{ crypId($agency['id']) }}/locator">
+                                        <i class="bi bi-person-fill-gear"></i>
+                                        Locataires
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- LOcations -->
+                                @can("location.view")
+                                <li class="nav-item">
+                                    <div class="btn-group dropdown-center">
+                                        <a class="w-100 nav-link text-white dropdown-toggle @if($active == 'location') active @endif" href="#"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-person-fill-gear"></i>
+                                            Locations
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/location">Toutes les
+                                                    locations</a></li>
+                                            <!-- Loacataires à jour -->
+                                            @can("locator.paid.view")
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/paid_locators">Locataires
+                                                    à jour</a></li>
+                                            @endcan
+
+                                            <!-- LOcataires en impayés -->
+                                            @can("locator.unpaid.view")
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/unpaid_locators">Locataires
+                                                    en impayé</a></li>
+                                            @endcan
+
+                                            <!-- Locataires déménagés -->
+                                            @can("locator.removed.view")
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/removed_locators">Locataires
+                                                    démenagés</a></li>
+                                            @endcan
+                                        </ul>
+                                    </div>
+                                </li>
+                                @endcan
+
+                                <!-- PAIEMENT -->
+                                @can("proprio.payement.view")
+                                <li class="nav-item">
+                                    <a class="nav-link @if($active == 'paiement') active @endif text-white"
+                                        href="/{{ crypId($agency['id']) }}/paiement">
+                                        <i class="bi bi-currency-exchange"></i>
+                                        Payer Propriétaire
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- Valider paiement -->
+                                @can("proprio.payement.validation.view")
+                                <li class="nav-item">
+                                    <a class="nav-link text-white @if($active == 'initiation') active @endif"
+                                        href="/{{ crypId($agency['id']) }}/initiation">
+                                        <i class="bi bi-cash-coin"></i>
+                                        Valider paiement
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- les factures -->
+                                @can ("invoices.view")
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($active == 'facture') active @endif text-white"
+                                        href="/{{ crypId($agency['id']) }}/factures">
+                                        <i class="bi bi-file-pdf"></i>
+                                        Factures
+                                    </a>
+                                </li>
+                                @endcan
+
+
+                                <!-- CAISSES -->
+                                @can("caisses.view")
+                                <li class="nav-item"><a class="nav-link text-white @if($active=='caisse') active @endif"
+                                        href="/{{ crypId($agency['id']) }}/caisses"><i class="bi bi-currency-dollar"></i> Toutes les
+                                        caisses</a>
+                                </li>
+                                @endcan
+
+                                <!-- Electricté -->
+                                <li class="nav-item">
+                                    <div class="btn-group dropdown-center">
+                                        <a class="nav-link @if($active == 'electricity') active @endif text-white dropdown-toggle" href="#"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-ev-station"></i> &nbsp; Electricité / Eau
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <!-- electricite -->
+                                            @can("electicity.invoices.view")
+                                            <li><a class="dropdown-item @if($active == 'electricity') active @endif"
+                                                    href="/{{ crypId($agency['id']) }}/electricity/locations">Electricité</a>
+                                            </li>
+                                            @endcan
+
+                                            <!-- eau -->
+                                            @can("water.invoices.view")
+                                            <li><a class="dropdown-item @if($active == 'water') active @endif"
+                                                    href="/{{ crypId($agency['id']) }}/eau/locations">Eau</a>
+                                            </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <h6
+                                class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                <span>Paramètres & Statistiques</span>
+                                <a class="d-flex align-items-center text-muted" href="#">
+                                    <span data-feather="plus-circle"></span>
+                                </a>
+                            </h6>
+
+                            <ul class="nav flex-column">
+                                <!-- statistique -->
+                                <li class="nav-item">
+                                    <div class="btn-group dropdown-center">
+                                        <a class="nav-link @if($active == 'statistique') active @endif text-white dropdown-toggle" href="#"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bi bi-ev-station"></i> &nbsp; Statistiques
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <!-- electricite -->
+                                            @can("statistiques.view")
+                                            <li><a class="dropdown-item @if($active == 'electricity') active @endif"
+                                                    href="/{{ crypId($agency['id']) }}/statistique-before-state">Statistique avant arrêt d'état</a>
+                                            </li>
+                                            <li><a class="dropdown-item @if($active == 'electricity') active @endif"
+                                                    href="/{{ crypId($agency['id']) }}/statistique-after-state">Statistique après arrêt d'état</a>
+                                            </li>
+                                            @endcan
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <!-- bilan agence -->
+                                @can("bilan.view")
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($active == 'filtrage') active @endif text-white"
+                                        href="/{{ crypId($agency['id']) }}/filtrage">
+                                        <i class="bi bi-filter-circle"></i> &nbsp; Bilan
+                                    </a>
+                                </li>
+                                @endcan
+
+                                <!-- Recouvrement -->
+                                @can("recovery.rates.view")
+                                <li class="nav-item">
+                                    <div class="btn-group dropdown-center">
+                                        <a class="nav-link @if ($active == 'recovery') active @endif text-white dropdown-toggle"
+                                            href="#" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="bi bi-reception-4"></i> &nbsp; Taux de recouvrement
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark">
+                                            <li><a class="dropdown-item active"
+                                                    href="/{{ crypId($agency['id']) }}/recovery_05_to_echeance_date">Recouvrement
+                                                    au 05</a></li>
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/recovery_10_to_echeance_date">Recouvrement
+                                                    au 10</a></li>
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/recovery_qualitatif">Recouvrement
+                                                    qualitatif</a></li>
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/performance">Taux
+                                                    d'occupation des maisons</a></li>
+                                            <li><a class="dropdown-item"
+                                                    href="/{{ crypId($agency['id']) }}/recovery_quelconque_date">Quelconque
+                                                    date</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </div>
+                    @endif
                 </div>
 
                 <!-- =============== LE BODY DU DASHBORD ========= -->
@@ -150,12 +390,12 @@
 
             {{-- MODAL DE CHANGEMENT DE MOT DE PASE --}}
             <!-- Modal -->
-            <div class="modal fade" id="updatePassword" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade animate__animated animate__fadeInUp" id="updatePassword" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title fs-5" id="exampleModalLabel">Modification de mot de passe
+                            <h5 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-pencil"></i> Modification de mot de passe
                             </h5>
                         </div>
                         <form action="{{ route('user.UpdateCompte', auth()->user()->id) }}"
@@ -163,7 +403,7 @@
                             @csrf
                             @method('PATCH')
                             <div class="modal-body">
-                                <input type="password" placeholder="**********" required name="password" class="form-control" id="">
+                                <input type="password" placeholder="Nouveau mot de pass" required name="password" class="form-control" id="">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="w-100 btn btn-sm bg-red"><i class="bi bi-check-circle"></i> Enregistrer</button>
@@ -231,6 +471,64 @@
                 });
             });
         });
+    </script>
+
+
+    <!--  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        const dropdownButton = document.querySelector('.dropdown-button');
+        const dropdown = document.querySelector('.dropdown');
+
+        dropdownButton.addEventListener('click', function() {
+            dropdown.classList.toggle('show');
+        });
+
+        // Optional: Close dropdown if clicking outside
+        window.addEventListener('click', function(event) {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // 
+        document.getElementById("logoutBtn").addEventListener("click", function(e) {
+            Swal.fire({
+                title: "Voulez-vous vraiment vous déconnecter?",
+                showDenyButton: true,
+                // showCancelButton: true,
+                confirmButtonText: "Oui",
+                denyButtonText: `Non`
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    // Swal.fire("En cours de traitement ...");
+
+                    Swal.fire({
+                        showConfirmButton: false,
+                        footer: `<div class="spinner-border" role="status">
+                                    <span class="visually-hidden">En cours de traitement ...</span>
+                                </div>`
+                    });
+
+                    axios.get("{{route('logout')}}")
+                        .then((res) => {
+                            console.log(res)
+                            if (res.status) {
+                                Swal.fire("Opération réussie!", res.message, "success");
+                                window.location.href = "{{route('user.login')}}"
+                            }
+                        }).catch((error) => {
+                            Swal.fire("Opération échouée", "Une erreure est survenue lors de la déconnexion", "error");
+                            window.location.href = "{{request()->route()->uri()}}"
+                        })
+                } else if (result.isDenied) {
+                    Swal.fire("Opération rejetée !", "", "info");
+                    // window.location.href = "{{request()->route()->uri()}}"
+                }
+            });
+        })
     </script>
 
     <!--  DATA TABLES -->
@@ -467,62 +765,6 @@
                 })
                 .buttons().container().appendTo('#myTable_wrapper .col-md-6:eq(0)');
         });
-    </script>
-
-    <!--  -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        const dropdownButton = document.querySelector('.dropdown-button');
-        const dropdown = document.querySelector('.dropdown');
-
-        dropdownButton.addEventListener('click', function() {
-            dropdown.classList.toggle('show');
-        });
-
-        // Optional: Close dropdown if clicking outside
-        window.addEventListener('click', function(event) {
-            if (!dropdown.contains(event.target)) {
-                dropdown.classList.remove('show');
-            }
-        });
-
-        // 
-        document.getElementById("logoutBtn").addEventListener("click", function(e) {
-            Swal.fire({
-                title: "Voulez-vous vraiment vous déconnecter?",
-                showDenyButton: true,
-                // showCancelButton: true,
-                confirmButtonText: "Oui",
-                denyButtonText: `Non`
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    // Swal.fire("En cours de traitement ...");
-
-                    Swal.fire({
-                        showConfirmButton: false,
-                        footer: `<div class="spinner-border" role="status">
-                                    <span class="visually-hidden">En cours de traitement ...</span>
-                                </div>`
-                    });
-
-                    axios.get("{{route('logout')}}")
-                        .then((res) => {
-                            if (res.status) {
-                                Swal.fire("Opération réussie!", res.message, "success");
-                                window.location.href = "{{route('user.login')}}"
-                            }
-                        }).catch((error) => {
-                            Swal.fire("Opération échouée", "Une erreure est survenue lors de la déconnexion", "error");
-                            window.location.href = "{{request()->route()->uri()}}"
-                        })
-                } else if (result.isDenied) {
-                    Swal.fire("Opération rejetée !", "", "info");
-                    // window.location.href = "{{request()->route()->uri()}}"
-                }
-            });
-        })
     </script>
 
     </html>

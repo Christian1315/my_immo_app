@@ -1,10 +1,10 @@
 <!-- Show Rooms Modal -->
-<div class="modal fade" id="showRooms" tabindex="-1" aria-labelledby="showRoomsLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="showRooms" tabindex="-1" aria-labelledby="showRoomsLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title" id="showRoomsLabel">
-                    Maison: <strong><em class="text-red" id="house_fullname"></em></strong>
+                    <i class="bi bi-house-add-fill"></i> Maison: <strong><em class="text-red" id="house_fullname"></em></strong>
                 </h6>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-circle"></i></button>
             </div>
@@ -17,17 +17,17 @@
 </div>
 
 <!-- Update House Modal -->
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title" id="updateModalLabel">
-                    Modifier <strong><em class="text-red" id="update_house_fullname"></em></strong>
+                   <i class="bi bi-pencil"></i> Modifier <strong><em class="text-red" id="update_house_fullname"></em></strong>
                 </h6>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
             </div>
             <div class="modal-body">
-                <form id="update-update_form" method="post" class="needs-validation" novalidate>
+                <form id="update-update_form" method="post" class="needs-validation p-3 border rounded" novalidate>
                     @csrf
                     @method('PATCH')
                     <div class="row">
@@ -121,17 +121,17 @@
 </div>
 
 <!-- Caution Modal -->
-<div class="modal fade" id="cautionModal" tabindex="-1" aria-labelledby="cautionModalLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="cautionModal" tabindex="-1" aria-labelledby="cautionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title" id="cautionModalLabel">
-                    Maison : <em class="text-red" id="caution_house_fullname"></em>
+                    <i class="bi bi-house-add-fill"></i> Maison : <em class="text-red" id="caution_house_fullname"></em>
                 </h6>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
             </div>
             <div class="modal-body">
-                <form id="caution_form" method="POST" class="needs-validation" novalidate>
+                <form id="caution_form" method="POST" class="needs-validation p-3 border rounded" novalidate>
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

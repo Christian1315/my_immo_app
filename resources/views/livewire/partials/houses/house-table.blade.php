@@ -20,7 +20,7 @@
         <tr class="align-items-center">
             <td class="text-center">{{ $loop->index + 1 }}</td>
             <td class="text-center">
-                <span class="bg-light text-dark">
+                <span class="badge border rounded bg-light text-dark">
                     {{ $house['name'] }}
                     <span class="text-red">
                         {{ $house->pre_paid == 1 ? 'prépayé' : '' }}
@@ -32,16 +32,16 @@
             <td class="text-center">{{ $house['longitude'] ?: '---' }}</td>
             <td class="text-center">{{ $house['Type']['name'] }}</td>
             <td class="text-center">
-                <button class="btn btn-sm btn-light">{{ $house['Supervisor']['name'] }}</button>
+                <span class="badge border rounded btn-light text-dark">{{ $house['Supervisor']['name'] }}</span>
             </td>
             <td class="text-center">
-                <button class="btn btn-sm btn-light">
+                <span class="badge border rounded text-dark btn-light">
                     {{ $house['Proprietor']['lastname'] }} {{ $house['Proprietor']['firstname'] }}
-                </button>
+                </span>
             </td>
             <td class="text-center">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#showRooms"
-                    onclick="show_rooms_fun({{ $house['id'] }})" class="btn btn-sm bg-warning">
+                    onclick="show_rooms_fun({{ $house['id'] }})" class="btn btn-sm bg-red">
                     <i class="bi bi-eye-fill"></i> &nbsp; Voir
                 </button>
             </td>
@@ -56,16 +56,14 @@
                 @endif
             </td>
             <td class="text-center text-red">
-                <button class="btn btn-sm btn-light">
-                    <i class="bi bi-calendar2-check-fill"></i>
+                <span class="badge bg-light text-dark rounded border">
                     {{ \Carbon\Carbon::parse($house->proprio_payement_echeance_date)->locale('fr')->isoFormat('D MMMM YYYY') }}
-                </button>
+                </span>
             </td>
             <td class="text-center text-red">
-                <button class="btn btn-sm btn-light">
-                    <i class="bi bi-calendar2-check-fill"></i>
+                <span class="badge rounded border text-dark bg-light">
                     {{ \Carbon\Carbon::parse($house->created_at)->locale('fr')->isoFormat('D MMMM YYYY') }}
-                </button>
+                </span>
             </td>
             <td class="text-center">
                 <div class="btn-group dropstart">

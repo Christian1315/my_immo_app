@@ -1,4 +1,4 @@
-<x-templates.agency :title="'Eau'" :active="'electricity'" :agency=$current_agency>
+<x-templates.base :title="'Eau'" :active="'electricity'" :agency=$current_agency>
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -529,4 +529,4 @@
         @endpush
     </div>
 
-</x-templates.agency>
+</x-templates.base>

@@ -1,4 +1,4 @@
-<x-templates.agency :title="'Factures'" :active="'facture'" :agency=$agency>
+<x-templates.base :title="'Factures'" :active="'facture'" :agency=$agency>
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -210,4 +210,4 @@
             $("#updateStatusForm").attr("action", `/location/${facture.id}/facture-traitement`)
         }
     </script>
-</x-templates.agency>
+</x-templates.base>

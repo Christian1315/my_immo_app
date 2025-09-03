@@ -227,15 +227,24 @@ class UserController extends Controller
             $request->session()->regenerateToken();
 
             // °°°°°° REDIRECTION °°°°°°°°°°°°
+            if (request()->ajax()) {
+                return response()->json([
+                    "status" => true,
+                    "message" => "Vous êtes déconnecté avec succès!",
+                ]);
+            }
+
             alert()->success('Succès', "Vous êtes déconnecté avec succès!");
             return redirect()->route("home");
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            DB::rollBack();
-            return back()
-                ->withInput()
-                ->withErrors($e->errors());
         } catch (\Exception $e) {
             Log::error("Erreur lors de la déconnexion: " . $e->getMessage());
+
+            if (request()->ajax()) {
+                return response()->json([
+                    "status" => false,
+                    "message" => "Une erreur est survenue lors de la déconnexion!",
+                ]);
+            }
             alert()->error('Echec', "Une erreur est survenue lors de la déconnexion!");
             return redirect()->route("home");
         }

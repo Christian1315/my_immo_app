@@ -1,4 +1,4 @@
-<x-templates.agency :title="'Mouvements des caisses'" :active="'caisse'" :agency=$agency :agency_account=$agency_account>
+<x-templates.base :title="'Mouvements des caisses'" :active="'caisse'" :agency=$agency :agency_account=$agency_account>
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -7,4 +7,4 @@
     <br>
 
     <livewire:caisse-mouvements :agency="$agency" :agency_account="$agency_account" />
-</x-templates.agency>
+</x-templates.base>

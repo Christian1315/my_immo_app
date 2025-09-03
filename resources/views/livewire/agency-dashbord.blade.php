@@ -1,4 +1,13 @@
 <div>
+    <style>
+        .card {
+            /* border-color: #cc3301; */
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50px;
+        }
+    </style>
+
     @if(Auth::user()->hasRole("Superviseur"))
     <div class="row d-flex justify-content-center">
         <div class="col-6">

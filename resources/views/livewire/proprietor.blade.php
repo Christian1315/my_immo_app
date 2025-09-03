@@ -3,23 +3,23 @@
     <div class="d-flex header-bar">
         <h2 class="accordion-header">
             <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#addProprietorModal">
-                <i class="bi bi-cloud-plus-fill"></i> Ajouter un propriétaire
+                <i class="bi bi-node-plus"></i> Ajouter un propriétaire
             </button>
         </h2>
     </div>
 
     <!-- Add Proprietor Modal -->
-    <div class="modal fade" id="addProprietorModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addProprietorModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade animate__animated animate__fadeInUp" id="addProprietorModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addProprietorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ajout d'un propriétaire</h5>
+                    <h5 class="modal-title"><i class="bi bi-node-plus"></i> Ajout d'un propriétaire</h5>
                     <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                         <i class="bi bi-x-circle"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('proprietor._AddProprietor') }}" method="POST" class="shadow-lg p-3 animate__animated animate__bounce" enctype="multipart/form-data">
+                    <form action="{{ route('proprietor._AddProprietor') }}" method="POST" class="p-3 border rounded" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="agency" value="{{ $current_agency['id'] }}">
 
@@ -87,7 +87,7 @@
                                 </a>
                             </td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-sm bg-warning"
+                                <button type="button" class="btn btn-sm bg-red"
                                     data-bs-toggle="modal"
                                     data-bs-target="#showHousesModal"
                                     onclick="showHouses({{ $proprietor['id'] }})">
@@ -96,11 +96,11 @@
                             </td>
                             @can("proprio.edit")
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning"
+                                <button class="btn btn-sm bg-red"
                                     data-bs-toggle="modal"
                                     data-bs-target="#updateProprietorModal"
                                     onclick="loadProprietorData({{ $proprietor['id'] }})">
-                                    <i class="bi bi-person-lines-fill"></i> Modifier
+                                    <i class="bi bi-pencil"></i> Modifier
                                 </button>
                             </td>
                             @endcan
@@ -113,12 +113,12 @@
     </div>
 
     <!-- Show Houses Modal -->
-    <div class="modal fade" id="showHousesModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="modal fade animate__animated animate__fadeInUp" id="showHousesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content p-3 border rounded">
                 <div class="modal-header">
                     <h6 class="modal-title">
-                        Propriétaire : <strong><em class="text-red" id="proprietorFullName"></em></strong>
+                        <i class="bi bi-person"></i> Propriétaire : <strong><em class="text-red" id="proprietorFullName"></em></strong>
                     </h6>
                 </div>
                 <div class="modal-body">
@@ -131,16 +131,16 @@
 
     <!-- Update Proprietor Modal -->
     @can("proprio.edit")
-    <div class="modal fade" id="updateProprietorModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="updateProprietorModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h6 class="modal-title">
-                        Modifier <strong><em class="text-red" id="updateProprietorFullName"></em></strong>
+                       <i class="bi bi-pencil"></i> Modifier <strong><em class="text-red" id="updateProprietorFullName"></em></strong>
                     </h6>
                 </div>
                 <div class="modal-body">
-                    <form id="updateProprietorForm" method="post" class="shadow-lg p-3 animate__animated animate__bounce">
+                    <form id="updateProprietorForm" method="post" class="p-3 border rounded">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
