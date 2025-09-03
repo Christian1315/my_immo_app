@@ -51,12 +51,12 @@
                 <span>{{str_replace('_','-',env('APP_NAME'))}} </span>
             </a>
 
-            <input class="mx-2 rounded form-control form-control-dark w-100 bg-light search--bar" type="text" autofocus placeholder="Recherche de liens ..." aria-label="searh">
+            <input class="mx-2 rounded form-control form-control-dark w-100 bg-white search--bar" type="text" autofocus placeholder="Recherche de liens ..." aria-label="searh">
 
             <div class="dropdown">
-                <button class="dropdown-button shadow"> {{ \Illuminate\Support\Str::limit(auth()->user()->name,4) }}</button>
+                <button class="dropdown-button shadow"><i class="bi bi-power"></i></button>
                 <div class="dropdown-content">
-                    <!-- onclick="return confirm('Voulez-vous vraiment vous déconnecter!?')"  -->
+                    <a class="btn btn-sm btn-light" href="#" style="text-transform: capitalize;"><span class="badge bg-light border rounded"><i class="bi bi-person"></i> &nbsp; {{ \Illuminate\Support\Str::limit(auth()->user()->name,10) }}</span></a>
                     <a class="btn btn-sm btn-light" id="logoutBtn" href="#"><i class="bi bi-power"></i> Se Déconnecter</a>
                     <a href="#" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#updatePassword"><i class="bi bi-key"></i> Mot de passe</a>
                 </div>
@@ -77,52 +77,28 @@
                         <div class="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    @if($active=="dashbord")
-                                    <a class="nav-link active" href="/dashbord">
-                                        <i class="bi bi-house-add-fill"></i>
-                                        Tableau de board <span class="sr-only">(current)</span>
+                                    <a class="nav-link @if($active=='dashbord') active @else text-white @endif" href="/dashbord">
+                                        <i class="bi bi-grip-horizontal"></i>
+                                        Tableau de board
                                     </a>
-                                    @else
-                                    <a class="nav-link text-white" href="/dashbord">
-                                        <i class="bi bi-house-add-fill"></i>
-                                        Tableau de board <span class="sr-only">(current)</span>
-                                    </a>
-                                    @endif
                                 </li>
 
                                 <li class="nav-item">
-                                    @if($active=="agency")
-                                    <a class="nav-link active" href="/agency">
-                                        <i class="bi bi-house-add-fill"></i>
-                                        Agences <span class="sr-only">(current)</span>
+                                    <a class="nav-link @if($active=='agency') active @else text-white @endif" href="/agency">
+                                        <i class="bi bi-house-add-fill"></i> Agences
                                     </a>
-                                    @else
-                                    <a class="nav-link text-white" href="/agency">
-                                        <i class="bi bi-house-add-fill"></i>
-                                        Agences <span class="sr-only">(current)</span>
-                                    </a>
-                                    @endif
                                 </li>
 
-                                @if($active=="count")
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="/count">
-                                        <i class="bi bi-person-fill-add"></i>
+                                    <a class="nav-link @if($active=='count') active @else text-white @endif" href="/count">
+                                        <i class="bi bi-wallet"></i>
                                         Comptes & Soldes
                                     </a>
                                 </li>
-                                @else
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="/count">
-                                        <i class="bi bi-person-fill-add"></i>
-                                        Comptes & Soldes
-                                    </a>
-                                </li>
-                                @endif
 
                             </ul>
                             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                                <span>Paramètres & Statistiques</span>
+                                <span>Parmêtrage</span>
                                 <a class="d-flex align-items-center text-muted" href="#">
                                     <span data-feather="plus-circle"></span>
                                 </a>
@@ -132,7 +108,7 @@
 
                                 <li class="nav-item">
                                     <a class="text-white nav-link @if($active=='setting') active @endif" href="/setting">
-                                        <i class="bi bi-gear-fill"></i>
+                                        <i class="bi bi-person-lines-fill"></i>
                                         Utilisateurs
                                     </a>
                                 </li>
@@ -146,17 +122,17 @@
 
                                 <li class="nav-item">
                                     <a class="text-white nav-link @if($active=='role') active @endif" href="{{route('roles.index')}}">
-                                        <i class="bi bi-person-wheelchair"></i>
-                                        Les Rôles
+                                        <i class="bi bi-key"></i>
+                                        Gestion des Rôles
                                     </a>
                                 </li>
-
+<!-- 
                                 <li class="nav-item">
                                     <a class="text-white nav-link @if($active=='statistique') active @endif" href="/statistique">
-                                        <i class="bi bi-flag-fill"></i>
+                                        <i class="bi bi-bar-chart-line"></i>
                                         Statistiques
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                             @endif
                         </div>
@@ -542,7 +518,7 @@
                             window.location.href = "{{request()->route()->uri()}}"
                         })
                 } else if (result.isDenied) {
-                    Swal.fire("Opération rejetée !","", "info");
+                    Swal.fire("Opération rejetée !", "", "info");
                     // window.location.href = "{{request()->route()->uri()}}"
                 }
             });

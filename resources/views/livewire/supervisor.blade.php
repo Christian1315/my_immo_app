@@ -24,7 +24,7 @@
                             <td class="text-center"><span class=" bg-light text-dark"> {{$supervisor["name"]}}</span></td>
                             <td class="text-center"><span class=" bg-light text-dark"> {{$supervisor["email"]}}</span></td>
                             <td class="text-center"><span class=" bg-light text-dark"> {{$supervisor["phone"]}}</span></td>
-                            <td class="text-center text-red"> <strong class=" bg-light text-red"> <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($supervisor->created_at)->locale('fr')->isoFormat('D MMMM YYYY') }} </strong> </th>
+                            <td class="text-center text-red"> <strong class="badge border rounded bg-light text-red"> {{ \Carbon\Carbon::parse($supervisor->created_at)->locale('fr')->isoFormat('D MMMM YYYY') }} </strong> </th>
                             <td class="text-center text-red">
                                 <button class="btn btn-sm btn-light" onclick="showAgentModal({{$supervisor->id}})" data-bs-toggle="modal" data-bs-target="#supervisorAgentModal"><i class="bi bi-list-check"></i></button>
                             </td>
@@ -40,11 +40,11 @@
     </div>
 
     <!-- Modal des agents -->
-    <div class="modal fade" id="supervisorAgentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="supervisorAgentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialod-scrollable">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <p class="fs-5 text-center" id="exampleModalLabel">Superviseur: <strong class="text-red supervisor_name"> </strong> </p>
+                    <p class="fs-5 text-center" id="exampleModalLabel"><i class="bi bi-person"></i> Superviseur: <strong class="text-red supervisor_name"> </strong> </p>
                 </div>
                 <div class="modal-body" id="agentsBody">
                     <!-- gerer ave du JS -->
@@ -54,11 +54,11 @@
     </div>
 
     <!-- Modal affectation de superviseur à un agent -->
-    <div class="modal fade" id="affectationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="affectationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <p class="fs-5 text-center" id="exampleModalLabel">Superviseur: <strong class="text-red supervisor_name"> </strong> </p>
+                    <p class="fs-5 text-center" id="exampleModalLabel"><i class="bi bi-people-fill"></i> Superviseur: <strong class="text-red supervisor_name"> </strong> </p>
                 </div>
                 <div class="modal-body">
                     <form id="affectationModalForm" method="post">

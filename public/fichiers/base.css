@@ -129,7 +129,7 @@ p {
 .bg-red:hover {
     color: #075594 !important;
     background-color: #f6f6f6 !important;
-    border: 3px solid #fff;
+    border: 3px solid #fff!important;
     border-radius: 10px;
     transition-duration: 0.5s;
 }
@@ -164,8 +164,8 @@ p {
   
     /* display: inline-flex; Permet au bouton de se redimensionner selon son contenu */
     /* display: flex; */
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     justify-content: center;
     align-items: center;
     text-transform: capitalize;

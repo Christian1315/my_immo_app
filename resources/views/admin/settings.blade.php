@@ -2,7 +2,7 @@
 
     <!-- HEADER -->
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Paramètrage du système</h1>
+        <h1 class="h2"><i class="bi bi-people"></i> Gestion des Utilisateurs</h1>
     </div>
     <br>
 

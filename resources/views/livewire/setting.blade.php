@@ -2,22 +2,22 @@
     <div class="d-flex header-bar">
         <small>
             <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                <i class="bi bi-cloud-plus-fill"></i> Ajouter un utilisateur
+                <i class="bi bi-node-plus"></i> Ajouter un utilisateur
             </button>
         </small>
     </div>
     <br>
 
     <!-- AJOUT D'UN USER -->
-    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="">Ajout d'un utilisateur</p>
+                    <p class=""><i class="bi bi-node-plus"></i> Ajout d'un utilisateur</p>
                     <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('AddUser')}}" class="shadow-lg p-3 animate__animated animate__bounce">
+                    <form method="POST" action="{{route('AddUser')}}" class="p-3 border rounded">
                         @csrf
                         <div class="row">
                             <div class="col-md-12 mb-2">
@@ -106,14 +106,14 @@
                     <tbody>
                         @foreach($users as $user)
                         <tr @if($user->is_archive) disabled @endif class="align-items-center my-2 @if($user->is_archive) shadow bg-secondary @endif" @if($user->is_archive) style="background-color:#F6F6F6;border: solid 1px #000" @endif>
-                            <td class="text-center">{{$loop->index + 1}} </td>
+                            <td class="text-center">{{$loop->iteration}} </td>
                             <td class="text-center"><span class=" bg-light text-dark"> {{$user["name"]}} ({{$user?->username}})</span> </td>
                             <td class="text-center"><span class=" bg-dark text-white">{{$user["email"]}} </span> </td>
                             <td class="text-center"> <span class=" bg-light text-dark">{{$user["phone"]}} </span> </td>
                             <td class="text-center">
                                 {{$user->_Agency?$user->_Agency->name:'---'}}
                             </td>
-                            <td class="text-center text-red"> <span class=" bg-light text-red"> <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($user["created_at"])->locale('fr')->isoFormat('D MMMM YYYY') }}</span></small></th>
+                            <td class="text-center text-red"> <span class="badge border rounded bg-light text-red"> {{ \Carbon\Carbon::parse($user["created_at"])->locale('fr')->isoFormat('D MMMM YYYY') }}</span></small></th>
 
                             <td class="text-center">
                                 <div class="btn-group dropstart">
@@ -123,7 +123,7 @@
                                     <ul class="dropdown-menu">
                                         <!-- if($user->id != 1) -->
                                         <button type="button"
-                                            class="btn btn-sm btn-warning edit-user"
+                                            class="btn btn-sm bg-red edit-user"
                                             data-id="{{ $user->id }}"
                                             title="Modifier"
                                             onclick="editUser({{$user->id}})">
@@ -142,12 +142,12 @@
     </div>
 
     <!--MODAL UPDATE USER  -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade animate__animated animate__fadeInUp" id="editUserModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content border-0 shadow">
                 <div class="modal-header bg-light border-bottom-0 py-3">
                     <div class="modal-header">
-                        <h6 class="modal-title fs-5">Modifier <strong> <em class="text-red" id="userName"></em> </strong> </h6>
+                        <h6 class="modal-title fs-5"><i class="bi bi-pencil"></i> Modifier <strong> <em class="text-red" id="userName"></em> </strong> </h6>
                     </div>
                     <button type="button" class="btn btn-sm bg-light text-red" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
                 </div>

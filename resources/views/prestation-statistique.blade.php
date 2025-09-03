@@ -21,7 +21,7 @@
 
         .rapport-title {
             color: #000;
-            /* border: solid 2px #cc3301; */
+            /* border: solid 2px #075594; */
             text-align: center !important;
             padding: 10px;
             background-color: rgb(159, 160, 161) !important;
@@ -29,7 +29,7 @@
         }
 
         .text-red {
-            color: #cc3301;
+            color: #075594;
         }
 
         td {
@@ -37,7 +37,7 @@
         }
 
         .bg-red {
-            background-color: #cc3301;
+            background-color: #075594;
             color: #fff;
         }
 
