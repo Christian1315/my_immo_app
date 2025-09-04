@@ -12,7 +12,6 @@ function show_rooms_fun(id) {
                                 </div>`
     });
 
-
     axios.get(`${API_BASE_URL}house/${id}/retrieve`)
         .then((response) => {
             const house = response.data;

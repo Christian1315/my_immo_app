@@ -1,14 +1,14 @@
 @can("room.add.nature")
-<div class="modal fade" id="room_nature" aria-labelledby="room_nature" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="room_nature" aria-labelledby="room_nature" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5">Nature de chambre</h5>
+                <h5 class="modal-title fs-5"><i class="bi bi-node-plus"></i> Nature de chambre</h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>
             </div>
-            <form action="{{route('room.AddRoomNature')}}" method="POST">
+            <form action="{{route('room.AddRoomNature')}}" method="POST" class="border rounded p-3">
                 @csrf
                 <div class="modal-body">
                     <div class="row">

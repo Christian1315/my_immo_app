@@ -1,15 +1,15 @@
 <!-- FILTRE PAR SUPERVISEUR -->
-<div class="modal fade" id="filtreBySupervisor" tabindex="-1" aria-labelledby="supervisorFilterLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="filtreBySupervisor" tabindex="-1" aria-labelledby="supervisorFilterLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="supervisorFilterLabel">Filtre par superviseur</h5>
+                <h5 class="modal-title" id="supervisorFilterLabel"><i class="bi bi-node-plus"></i> Filtre par superviseur</h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('room.FiltreRoomBySupervisor',$current_agency->id)}}" method="POST">
+                <form action="{{route('room.FiltreRoomBySupervisor',$current_agency->id)}}" class="border rounded p-3" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
@@ -33,17 +33,17 @@
 </div>
 
 <!-- FILTRE PAR MAISON -->
-<div class="modal fade" id="filtreByHouse" tabindex="-1" aria-labelledby="houseFilterLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="filtreByHouse" tabindex="-1" aria-labelledby="houseFilterLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="houseFilterLabel">Filtre par maison</h5>
+                <h5 class="modal-title" id="houseFilterLabel"><i class="bi bi-funnel"></i> Filtre par maison</h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('room.FiltreRoomByHouse',$current_agency->id)}}" method="POST">
+                <form action="{{route('room.FiltreRoomByHouse',$current_agency->id)}}" method="POST" class="p-3 border rounded">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">

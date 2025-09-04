@@ -1,9 +1,9 @@
-<div class="modal fade" id="showLocators" tabindex="-1" aria-labelledby="locatorsModalLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="showLocators" tabindex="-1" aria-labelledby="locatorsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="locatorsModalLabel">
-                    Les Locataires de la chambre : <strong class="text-red" id="room_number"></strong>
+                   <i class="bi bi-person"></i> Les Locataires de la chambre : <strong class="text-red" id="room_number"></strong>
                 </h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>

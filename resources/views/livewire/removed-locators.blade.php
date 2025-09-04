@@ -8,11 +8,11 @@
     </div>
 
     <!-- FILTRE BY SUPERVISOR -->
-    <div class="modal fade" id="ShowSearchLocatorsBySupervisorForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsBySupervisorForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Filter par superviseur</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-person-plus"></i> Filter par superviseur</p>
                 </div>
                 <div class="modal-body">
                     <form action="{{route('locator.RemovedFiltreBySupervisor',$current_agency->id)}}" method="POST">
@@ -35,7 +35,7 @@
     </div>
 
     <!-- FILTRE BY HOUSE -->
-    <div class="modal fade" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -89,36 +89,21 @@
                         @foreach(session("filteredLocators")?session("filteredLocators"):$locators as $location)
                         <tr class="align-items-center">
                             <td class="text-center">{{$loop->index + 1}} </td>
-                            <td class="text-center text-red"> <strong class=" bg-light text-dark p-2 btn btn-sm"> {{$location->House?->name}}</strong></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{ $location->House?->Supervisor?->name }} </span></td>
-                            <td class="text-center"> <strong class=" bg-light text-dark p-2"> {{ $location->Room?$location->Room->number:"deménagé" }}</strong></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{$location->Locataire?->name}}</span></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{$location->Locataire?->prenom}}</span></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{$location->Locataire?->email}}</span></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{$location->Locataire?->card_id}}</span></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{$location->Locataire?->phone}}</span></td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{$location->Locataire?->adresse}}</span></td>
-                            <td class="text-center"> <button class=" btn bg-light text-red"> {{$location["latest_loyer_date"]}} </button> </td>
+                            <td class="text-center text-red"> <strong class="badge bg-light text-dark p-2 btn btn-sm"> {{$location->House?->name}}</strong></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{ $location->House?->Supervisor?->name }} </span></td>
+                            <td class="text-center"> <strong class="badge bg-light text-dark p-2"> {{ $location->Room?$location->Room->number:"deménagé" }}</strong></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{$location->Locataire?->name}}</span></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{$location->Locataire?->prenom}}</span></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{$location->Locataire?->email}}</span></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{$location->Locataire?->card_id}}</span></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{$location->Locataire?->phone}}</span></td>
+                            <td class="text-center"><span class="badge bg-light text-dark"> {{$location->Locataire?->adresse}}</span></td>
+                            <td class="text-center"> <button class="badge bg-light text-red"> {{$location["latest_loyer_date"]}} </button> </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <br><br>
-
-            <!-- pagination -->
-            <div class="justify-center my-2">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
     </div>
 
     <script type="text/javascript">

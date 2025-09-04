@@ -1,15 +1,15 @@
 @can("locator.create")
-<div class="modal fade" id="addLocator" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade animate__animated animate__fadeInUp" id="addLocator" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="">Ajout d'un Locataire</p>
+                <p class=""><i class="bi bi-person-plus"></i> Ajout d'un Locataire</p>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('locator._AddLocataire') }}" method="POST" class="shadow-lg p-3 animate__animated animate__bounce" enctype="multipart/form-data">
+                <form action="{{ route('locator._AddLocataire') }}" method="POST" class="p-3 border rounded" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">

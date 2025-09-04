@@ -1,13 +1,13 @@
 @can("room.edit")
 <!-- ###### MODEL DE MODIFICATION ###### -->
-<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade animate__animated animate__fadeInUp" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h6 class="modal-title fs-5" id="exampleModalLabel">Modifier <strong> <em class="text-red" id="update_room_fullname"></em> </strong> </h6>
+                <h6 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-pencil"></i> Modifier <strong> <em class="text-red" id="update_room_fullname"></em> </strong> </h6>
             </div>
             <div class="modal-body">
-                <form id="update_form" method="POST" class="shadow-lg p-3 animate__animated animate__bounce" enctype="multipart/form-data">
+                <form id="update_form" method="POST" class="p-3 border rounded" enctype="multipart/form-data">
                     @csrf
                     @method("PATCH")
                     <div class="row">

@@ -2,6 +2,13 @@
 const API_BASE_URL = document.querySelector('meta[name="api-base-url"]').content;
 
 function showLocators(id) {
+    Swal.fire({
+        showConfirmButton: false,
+        footer: `<div class="spinner-border" role="status">
+                                    <span class="visually-hidden">En cours de traitement ...</span>
+                                </div>`
+    });
+
     $("#room_locators").empty();
     axios.get(`${API_BASE_URL}room/${id}/retrieve`)
         .then((response) => {
@@ -16,6 +23,8 @@ function showLocators(id) {
                 const locatorFullname = `${locator.name} ${locator.prenom}`;
                 $('#room_locators').append(`<li class='list-group-item'>${locatorFullname}</li>`);
             });
+
+            Swal.close();
         })
         .catch((error) => {
             console.error("Erreur lors de la récupération des locataires:", error);
@@ -108,15 +117,21 @@ function showElectricityDiscountInputs() {
 
 // Fonction pour la mise à jour d'une chambre
 function updateRoom(id) {
+    Swal.fire({
+        showConfirmButton: false,
+        footer: `<div class="spinner-border" role="status">
+                                    <span class="visually-hidden">En cours de traitement ...</span>
+                                </div>`
+    });
+
     axios.get(`${API_BASE_URL}room/${id}/retrieve`)
         .then((response) => {
             const room = response.data;
-
             // 
-            $("#update_showWaterInfo").prop('checked',room.water)
-            $("#update_water_discounter").prop('checked',room.water_discounter)
-            $("#update_showWaterConventionnalCounterInputs").prop('checked',room.water_conventionnal_counter)
-            $("#update_forage").prop('checked',room.forage)
+            $("#update_showWaterInfo").prop('checked', room.water)
+            $("#update_water_discounter").prop('checked', room.water_discounter)
+            $("#update_showWaterConventionnalCounterInputs").prop('checked', room.water_conventionnal_counter)
+            $("#update_forage").prop('checked', room.forage)
             $("#update_forfait_forage").val(room.forfait_forage)
             $("#update_unit_price").val(Number(room.unit_price))
             $("#update_water_counter_start_index").val(room.water_counter_start_index)
@@ -132,16 +147,18 @@ function updateRoom(id) {
             $("#cleaning").val(room.cleaning);
             $("#comments").val(room.comments);
 
-            $("#update_btncheck_electricity").prop('checked',room.electricity)
-            $("#update_electricity_decounter_flexCheckChecked").prop('checked',room.electricity_discounter)
-            $("#update_electricity_card_flexCheckDefault").prop('checked',room.electricity_card_counter)
+            $("#update_btncheck_electricity").prop('checked', room.electricity)
+            $("#update_electricity_decounter_flexCheckChecked").prop('checked', room.electricity_discounter)
+            $("#update_electricity_card_flexCheckDefault").prop('checked', room.electricity_card_counter)
 
-            $("#update_electricity_card_conven_flexCheckChecked").prop('checked',room.electricity_conventionnal_counter)
+            $("#update_electricity_card_conven_flexCheckChecked").prop('checked', room.electricity_conventionnal_counter)
             $("#update_electricity_counter_number").val(room.electricity_counter_number);
             $("#update_electricity_unit_price").val(Number(room.electricity_unit_price));
             $("#update_electricity_counter_start_index").val(room.electricity_counter_start_index);
 
             $("#update_form").attr("action", `/room/${room.id}/update`);
+
+            Swal.close();
         })
         .catch((error) => {
             console.error("Erreur lors de la récupération des données de la chambre:", error);

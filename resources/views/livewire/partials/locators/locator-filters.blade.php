@@ -1,12 +1,12 @@
 <!-- FILTRE BY SUPERVISOR -->
-<div class="modal fade" id="ShowSearchLocatorsBySupervisorForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsBySupervisorForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="" id="exampleModalLabel">Filter par superviseur</p>
+                <p class="" id="exampleModalLabel"><i class="bi bi-funnel"></i> Filter par superviseur</p>
             </div>
             <div class="modal-body">
-                <form action="{{ route('locator.FiltreBySupervisor', $current_agency->id) }}" method="POST">
+                <form action="{{ route('locator.FiltreBySupervisor', $current_agency->id) }}" method="POST" class="border rounded p-3">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
@@ -29,14 +29,14 @@
 </div>
 
 <!-- FILTRE BY HOUSE -->
-<div class="modal fade" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="" id="exampleModalLabel">Filter par maison</p>
+                <p class="" id="exampleModalLabel"><i class="bi bi-funnel"></i> Filter par maison</p>
             </div>
             <div class="modal-body">
-                <form action="{{ route('locator.FiltreByHouse', $current_agency->id) }}" method="POST">
+                <form action="{{ route('locator.FiltreByHouse', $current_agency->id) }}" method="POST" class="p-3 border rounded">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">

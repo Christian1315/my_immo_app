@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize event listeners
     initializeEventListeners();
 });
@@ -7,10 +7,10 @@ function initializeEventListeners() {
     // Display locators options toggle
     const optionsDiv = document.getElementById('display_locators_options_block');
     optionsDiv.style.display = 'none'
-    
+
     const displayLocatorsOptions = document.getElementById('displayLocatorsOptions');
     if (displayLocatorsOptions) {
-        displayLocatorsOptions.addEventListener('change', function() {
+        displayLocatorsOptions.addEventListener('change', function () {
             optionsDiv.style.display = this.checked ? 'block' : 'none';
         });
     }
@@ -18,7 +18,7 @@ function initializeEventListeners() {
     // Avalisor checkbox
     const avalisorCheckbox = document.getElementById('avalisor');
     if (avalisorCheckbox) {
-        avalisorCheckbox.addEventListener('change', function() {
+        avalisorCheckbox.addEventListener('change', function () {
             const avalisorInfo = document.getElementById('show_avalisor_info');
             avalisorInfo.classList.toggle('d-none', !this.checked);
         });
@@ -27,7 +27,7 @@ function initializeEventListeners() {
     // Prorata checkbox
     const prorataCheckbox = document.getElementById('prorata');
     if (prorataCheckbox) {
-        prorataCheckbox.addEventListener('change', function() {
+        prorataCheckbox.addEventListener('change', function () {
             const prorataInfo = document.getElementById('show_prorata_info');
             prorataInfo.style.display = this.checked ? 'block' : 'none';
             if (!this.checked) {
@@ -43,7 +43,7 @@ function initializeEventListeners() {
 function initializeModalEventListeners() {
     // Show Avalisor Modal
     document.querySelectorAll('[data-bs-target="#showAvalisor"]').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const locatorId = this.dataset.locatorId;
             showAvalisorModal(locatorId);
         });
@@ -51,7 +51,7 @@ function initializeModalEventListeners() {
 
     // Show Houses Modal
     document.querySelectorAll('[data-bs-target="#showHouses"]').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const locatorId = this.dataset.locatorId;
             showHousesModal(locatorId);
         });
@@ -59,7 +59,7 @@ function initializeModalEventListeners() {
 
     // Show Rooms Modal
     document.querySelectorAll('[data-bs-target="#showRooms"]').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const locatorId = this.dataset.locatorId;
             showRoomsModal(locatorId);
         });
@@ -67,7 +67,7 @@ function initializeModalEventListeners() {
 
     // Update Modal
     document.querySelectorAll('[data-bs-target="#updateModal"]').forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             const locatorId = this.dataset.locatorId;
             showUpdateModal(locatorId);
         });
@@ -76,10 +76,21 @@ function initializeModalEventListeners() {
 
 // API Calls
 async function fetchLocatorData(id) {
+    Swal.fire({
+        showConfirmButton: false,
+        footer: `<div class="spinner-border" role="status">
+                                    <span class="visually-hidden">En cours de traitement ...</span>
+                                </div>`
+    });
+
     try {
         const API_BASE_URL = document.querySelector('meta[name="api-base-url"]').content;
         const response = await axios.get(`${API_BASE_URL}locator/${id}/retrieve`);
+
+        Swal.close();
+
         return response.data;
+
     } catch (error) {
         console.error('Error fetching locator data:', error);
         alert("Une erreur s'est produite lors de la récupération des données");
@@ -149,7 +160,7 @@ async function showUpdateModal(id) {
         const form = document.getElementById('update_form');
 
         document.getElementById('update_locator_fullname').textContent = `${locator.name} ${locator.prenom}`;
-        
+
         // Fill form fields
         document.getElementById('update-name').value = locator.name;
         document.getElementById('update-prenom').value = locator.prenom;

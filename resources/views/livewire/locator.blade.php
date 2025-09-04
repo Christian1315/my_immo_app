@@ -5,7 +5,7 @@
     <div class="d-flex header-bar">
         <h2 class="accordion-header">
             <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#addLocator">
-                <i class="bi bi-cloud-plus-fill"></i> Ajouter
+                <i class="bi bi-node-plus"></i> Ajouter
             </button>
         </h2>
     </div>
@@ -58,18 +58,18 @@
                         @foreach((session()->get("locators_filtred") ? session()->get("locators_filtred") : $locators) as $locator)
                         <tr class="align-items-center">
                             <td class="text-center">{{ $loop->index + 1 }}</td>
-                            <td class="text-center"><span class=" bg-dark">{{ $locator["name"] }}</span></td>
-                            <td class="text-center">{{ $locator["prenom"] }}</td>
-                            <td class="text-center"><span class=" text-dark bg-light">{{ $locator["phone"] }}</span></td>
-                            
+                            <td class="text-center"><span class="badge border rounded bg-light text-dark">{{ $locator["name"] }}</span></td>
+                            <td class="text-center"><span class="badge bg-light border rounded"> {{ $locator["prenom"] }}</span></td>
+                            <td class="text-center"><span class="badge border rounded text-dark bg-light">{{ $locator["phone"] }}</span></td>
+
                             <!-- Avaliseur Column -->
                             <td class="text-center">
                                 @if($locator->avaliseur)
-                                    <button class='btn btn-sm btn-light shadow' data-bs-toggle='modal' data-bs-target='#showAvalisor' data-locator-id="{{ $locator['id'] }}">
-                                        <i class='bi bi-eye-fill'></i>
-                                    </button>
+                                <button class='btn btn-sm btn-light shadow' data-bs-toggle='modal' data-bs-target='#showAvalisor' data-locator-id="{{ $locator['id'] }}">
+                                    <i class='bi bi-eye-fill'></i>
+                                </button>
                                 @else
-                                    ---
+                                ---
                                 @endif
                             </td>
 
@@ -91,15 +91,15 @@
                             <td class="text-center">
                                 <div class="form-control w-100" style="height: auto; overflow-y: scroll; height: 50px">
                                     @if(count($locator->Locations) > 0)
-                                        <ul class="list-group">
-                                            @foreach ($locator->Locations as $location)
-                                                <li class="list-group-item">
-                                                    <span class=" bg-dark text-white">{{ $location->House?->Supervisor?->name }}</span>
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                    <ul class="list-group">
+                                        @foreach ($locator->Locations as $location)
+                                        <li class="list-group-item">
+                                            <span class="badge border rounded bg-light text-dark">{{ $location->House?->Supervisor?->name }}</span>
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                     @else
-                                        ---
+                                    ---
                                     @endif
                                 </div>
                             </td>
@@ -119,22 +119,22 @@
                                     </button>
                                     <ul class="dropdown-menu">
                                         @can("locator.edit")
-                                            <li>
-                                                <button class="dropdown-item btn btn-sm bg-warning" data-bs-toggle="modal" data-bs-target="#updateModal" data-locator-id="{{ $locator->id }}">
-                                                    <i class="bi bi-person-lines-fill"></i> Modifier
-                                                </button>
-                                            </li>
+                                        <li>
+                                            <button class="dropdown-item btn btn-sm bg-red" data-bs-toggle="modal" data-bs-target="#updateModal" data-locator-id="{{ $locator->id }}">
+                                                <i class="bi bi-person-lines-fill"></i> Modifier
+                                            </button>
+                                        </li>
                                         @endcan
                                         @can("locator.delete")
-                                            <li>
-                                                <form action="{{ route('locator.DeleteLocataire', crypId($locator->id)) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item btn btn-sm bg-red" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce locataire ?')">
-                                                        <i class="bi bi-archive-fill"></i> Supprimer
-                                                    </button>
-                                                </form>
-                                            </li>
+                                        <li>
+                                            <form action="{{ route('locator.DeleteLocataire', crypId($locator->id)) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item btn btn-sm bg-red" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce locataire ?')">
+                                                    <i class="bi bi-archive-fill"></i> Supprimer
+                                                </button>
+                                            </form>
+                                        </li>
                                         @endcan
                                         <li><span class="dropdown-item">Adresse: {{ $locator["adresse"] }}</span></li>
                                         <li><span class="dropdown-item">Card ID: {{ $locator["card_id"] }}</span></li>

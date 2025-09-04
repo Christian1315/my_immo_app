@@ -541,6 +541,7 @@
                 $(this).find('.agency-modal-select2').each(function() {
                     $(this).select2({
                         width: '100%',
+                        // theme:"bootstrap",
                         placeholder: $(this).data('placeholder'),
                         dropdownParent: $(this).closest('.modal'),
                         allowClear: true

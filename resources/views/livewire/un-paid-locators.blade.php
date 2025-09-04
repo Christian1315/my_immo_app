@@ -9,14 +9,14 @@
 
     <!-- FILTRE BY SUPERVISOR -->
 
-    <div class="modal fade" id="ShowSearchLocatorsBySupervisorForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsBySupervisorForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Filter par superviseur</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-node-plus"></i> Filter par superviseur</p>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('locator.UnPaidFiltreBySupervisor',$current_agency->id)}}" method="POST">
+                    <form action="{{route('locator.UnPaidFiltreBySupervisor',$current_agency->id)}}" method="POST" class="border rounded p-3">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -37,14 +37,14 @@
     </div>
 
     <!-- FILTRE BY HOUSE -->
-    <div class="modal fade" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Filter par maison</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-node-plus"></i> Filter par maison</p>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('locator.UnPaidFiltreByHouse',$current_agency->id)}}" method="POST">
+                    <form action="{{route('locator.UnPaidFiltreByHouse',$current_agency->id)}}" method="POST" class="border rounded border">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -90,13 +90,13 @@
                         @foreach(session('filteredLocators')?session('filteredLocators'):$locators as $location)
                         <tr class="align-items-center">
                             <td class="text-center">{{$loop->index+1}}</td>
-                            <td class="text-center"> <span class=" bg-dark text-white">{{$location->House?->name}}</span> </td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{ $location->House?->Supervisor?->name }} </span> </td>
+                            <td class="text-center"> <span class="border rounded bg-light text-dark">{{$location->House?->name}}</span> </td>
+                            <td class="text-center"><span class="border rounded bg-lightt text-dark"> {{ $location->House?->Supervisor?->name }} </span> </td>
                             <td class="text-center">{{ $location->Room?$location->Room->number:"deménagé" }}</td>
-                            <td class="text-center"> <span class=" bg-light text-dark"> {{$location->Locataire?->name}} {{$location->Locataire?->prenom}} ({{$location->Locataire?->phone}}) </span> </td>
-                            <td class="text-center text-red"><small> <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($location["latest_loyer_date"])->locale('fr')->isoFormat('MMMM YYYY') }}</small> </td>
-                            <td class="text-center"> <span class=" bg-dark text-white"> {{number_format($location->loyer,0," "," ")}}</span> </td>
-                            <td class="text-center text-red"><small> <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($location["echeance_date"])->locale('fr')->isoFormat('D MMMM YYYY') }}</small> <small class="text-dark">({{ $location->pre_paid?"PRE_PAYE":"" }} {{ $location->post_paid ? "POST_PAYE":'' }})</small>  </td>
+                            <td class="text-center"> <span class="border rounded bg-lightt text-dark"> {{$location->Locataire?->name}} {{$location->Locataire?->prenom}} ({{$location->Locataire?->phone}}) </span> </td>
+                            <td class="text-center text-red"><small> {{ \Carbon\Carbon::parse($location["latest_loyer_date"])->locale('fr')->isoFormat('MMMM YYYY') }}</small> </td>
+                            <td class="text-center"> <span class="border rounded bg-light text-white"> {{number_format($location->loyer,0," "," ")}}</span> </td>
+                            <td class="text-center text-red"><small>  {{ \Carbon\Carbon::parse($location["echeance_date"])->locale('fr')->isoFormat('D MMMM YYYY') }}</small> <small class="text-dark">({{ $location->pre_paid?"PRE_PAYE":"" }} {{ $location->post_paid ? "POST_PAYE":'' }})</small>  </td>
                         </tr>
                         @endforeach
                     </tbody>

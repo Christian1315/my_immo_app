@@ -3,17 +3,17 @@
     <!-- AJOUT D'UN TYPE DE CHAMBRE -->
     <div class="text-left">
         <button type="button" class="btn btn btn-sm bg-light shadow roundered" data-bs-toggle="modal" data-bs-target="#location_type">
-            <i class="bi bi-cloud-plus-fill"></i>Ajouter un type de location
+            <i class="bi bi-node-plus"></i> Ajouter un type de location
         </button>
     </div>
     <br>
 
     <!-- Modal room type-->
-    <div class="modal fade" id="location_type" aria-labelledby="location_type" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="location_type" aria-labelledby="location_type" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fs-5">Type de location</h5>
+                    <h5 class="modal-title fs-5"><i class="bi bi-node-plus"></i> Type de location</h5>
                 </div>
                 <form action="{{route('location.AddType')}}" method="POST">
                     @csrf
@@ -49,14 +49,14 @@
     </small>
 
     <!-- FILTRE CAUTIONS BY PERIOD -->
-    <div class="modal fade" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="ShowSearchLocatorsByHouseForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Générer par période</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-calendar4"></i> Générer par période</p>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('location._ManagePrestationStatistiqueForAgencyByPeriod', crypId($current_agency->id))}}" method="POST">
+                    <form action="{{route('location._ManagePrestationStatistiqueForAgencyByPeriod', crypId($current_agency->id))}}" method="POST" class="border rounded p-3">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -85,14 +85,14 @@
     </div>
 
     <!-- FILTRE BY SUPERVISOR -->
-    <div class="modal fade" id="serchBySupervisor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="serchBySupervisor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Filtre par superviseur</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-funnel"></i> Filtre par superviseur</p>
                 </div>
                 <div class="modal-body">
-                    <form class="serchBySupervisor" action="{{route('location.FiltreBySupervisor',$current_agency->id)}}" method="POST">
+                    <form class="serchBySupervisor" action="{{route('location.FiltreBySupervisor',$current_agency->id)}}" method="POST" class="rounded p-3 border">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -113,14 +113,14 @@
     </div>
 
     <!-- FILTRE BY HOUSE -->
-    <div class="modal fade" id="searchByHouse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="searchByHouse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Filtre par maison</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-funnel"></i> Filtre par maison</p>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('location.FiltreByHouse',$current_agency->id)}}" method="POST">
+                    <form action="{{route('location.FiltreByHouse',$current_agency->id)}}" method="POST" class="border rounded p-3">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -141,14 +141,14 @@
     </div>
 
     <!-- FILTRE BY PROPRIETOR -->
-    <div class="modal fade" id="searchByProprio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade animate__animated animate__fadeInUp" id="searchByProprio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="" id="exampleModalLabel">Filtrer par proprietaire</p>
+                    <p class="" id="exampleModalLabel"><i class="bi bi-funnel"></i> Filtrer par proprietaire</p>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('location.FiltreByProprio',$current_agency->id)}}" method="POST">
+                    <form action="{{route('location.FiltreByProprio',$current_agency->id)}}" method="POST" class="border rounded p-3">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -172,22 +172,22 @@
     <div class="d-flex header-bar">
         <small>
             <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#addLocation">
-                <i class="bi bi-cloud-plus-fill"></i> Ajouter
+                <i class="bi bi-node-plus"></i> Ajouter
             </button>
         </small>
     </div>
     <br><br>
 
     <!-- ADD LOCATION -->
-    <div class="modal fade" id="addLocation" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="addLocation" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p class="">Ajout d'une location</p>
+                    <p class=""><i class="bi bi-node-plus"></i> Ajout d'une location</p>
                     <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('location._AddLocation')}}" method="POST" class="shadow-lg p-3 animate__animated animate__bounce" enctype="multipart/form-data">
+                    <form action="{{route('location._AddLocation')}}" method="POST" class="p-3 rounded border" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -389,7 +389,7 @@
 
             $removed_locators = $locations->where("status", 3);; ?>
 
-            <h4 class="">Total: <strong class="text-red"> {{session("locations_filtred")?count(session("locations_filtred")): $locations_count}} </strong> | Légende: <button class="btn btn-sm btn-warning text-uppercase" data-bs-toggle="modal" data-bs-target="#serchBySupervisor" onclick="searchPaidBySuperviseur()">{{count($unpaid_locators)}} Impayé(s) <span class="bagde bg-light shadow rounded p-1"><i class="bi bi-file-earmark-pdf-fill"></i> Imprimer</span> </button> <button class="btn btn-sm btn-secondary text-uppercase">{{count($removed_locators)}} Démenagé(s)</button> <button class="btn btn-sm btn-light text-uppercase">{{count($paid_locators)}} à jour</button> | <button class="btn btn-sm btn-light text-uppercase" data-bs-toggle="modal" data-bs-target="#serchBySupervisor" onclick="searchAllBySupervisor()"> {{count($locations)}} Tous <span class="bagde bg-dark shadow shadow rounded p-1"><i class="bi bi-file-earmark-pdf-fill"></i> Imprimer</span></button> </h4>
+            <h4 class="">Total: <strong class="text-red"> {{session("locations_filtred")?count(session("locations_filtred")): $locations_count}} </strong> | Légende: <button class="btn btn-sm bg-red text-uppercase" data-bs-toggle="modal" data-bs-target="#serchBySupervisor" onclick="searchPaidBySuperviseur()">{{count($unpaid_locators)}} Impayé(s) <span class="bagde bg-light shadow rounded p-1"><i class="bi bi-file-earmark-pdf-fill"></i> Imprimer</span> </button> <button class="btn btn-sm btn-secondary text-uppercase">{{count($removed_locators)}} Démenagé(s)</button> <button class="btn btn-sm btn-light text-uppercase">{{count($paid_locators)}} à jour</button> | <button class="btn btn-sm btn-light text-uppercase" data-bs-toggle="modal" data-bs-target="#serchBySupervisor" onclick="searchAllBySupervisor()"> {{count($locations)}} Tous <span class="bagde bg-dark shadow shadow rounded p-1"><i class="bi bi-file-earmark-pdf-fill"></i> Imprimer</span></button> </h4>
             <div class="p-3 table table-responsive table-responsive-list shadow">
                 <table id="myTable" class="table-striped">
                     <div id="buttons"></div>
@@ -415,25 +415,25 @@
                         $now = strtotime(date("Y/m/d", strtotime(now())));
                         $location_echeance_date = strtotime(date("Y/m/d", strtotime($location->echeance_date)));
                         @endphp
-                        <tr class="align-items-center @if($location->status==3) bg-secondary text-white @elseif($location_echeance_date < $now) bg-warning @endif ">
+                        <tr class="align-items-center @if($location->status==3) bg-secondary text-white @elseif($location_echeance_date < $now) bg-red @endif ">
                             <!-- <td class="text-center">{{$loop->index+1}} </td> -->
                             <td class="text-left">
-                                <span class=" bg-light text-dark">{{$location->House?->name}}</span>
-                                <span class="bg-light text-dark d-block d-sm-none">
+                                <span class="badge border rounded bg-light text-dark">{{$location->House?->name}}</span>
+                                <span class=" border rounded bg-light text-dark d-block d-sm-none">
                                     | {{$location->Locataire?->name}} {{$location->Locataire?->prenom}} ({{$location->Locataire?->phone}}) | {{number_format($location["loyer"],0,","," ") }} | <small class="@if($location->status==3) text-white @endif"> <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($location["latest_loyer_date"])->locale('fr')->isoFormat('MMMM YYYY') }}</small>
                                 </span>
                             </td>
-                            <td class="text-left"><span class=" bg-light text-dark">{{$location->House?->Proprietor?->firstname}} {{$location->House?->Proprietor?->lastname}} </span></td>
-                            <td class="text-center"> <span class="text-uppercase ">{{ $location->House?->Supervisor?->name }} </span> </td>
+                            <td class="text-left"><span class=" rounded border bg-light text-dark">{{$location->House?->Proprietor?->firstname}} {{$location->House?->Proprietor?->lastname}} </span></td>
+                            <td class="text-center"> <span class=" rounded border text-dark text-uppercase ">{{ $location->House?->Supervisor?->name }} </span> </td>
                             <td class="text-center">{{$location->Room?$location->Room->number:"---"}}</td>
-                            <td class="text-center"><span class="text-uppercase   bg-light text-dark">{{$location->Locataire?->name}} {{$location->Locataire?->prenom}} ({{$location->Locataire?->phone}})</span></td>
+                            <td class="text-center"><span class="text-uppercase  border rounded bg-light text-dark">{{$location->Locataire?->name}} {{$location->Locataire?->prenom}} ({{$location->Locataire?->phone}})</span></td>
 
-                            <td class="text-center text-red"><small class="@if($location->status==3) text-white @endif"> <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($location["latest_loyer_date"])->locale('fr')->isoFormat('MMMM YYYY') }}</small> </td>
-                            <td class="text-center"><span class=" bg-light text-dark"> {{number_format($location["loyer"],0,","," ") }}</span></td>
+                            <td class="text-center text-red"><small class=" bg-light text-dak rounded border @if($location->status==3) text-white @endif"> {{ \Carbon\Carbon::parse($location["latest_loyer_date"])->locale('fr')->isoFormat('MMMM YYYY') }}</small> </td>
+                            <td class="text-center"><span class=" border rounded bg-light text-dark"> {{number_format($location["loyer"],0,","," ") }}</span></td>
                             <td class="text-center">
                                 @if($location->status!=3)
-                                <span class="text-red text-uppercase  bg-light text-dark">
-                                    <i class="bi bi-calendar2-check-fill"></i> {{ \Carbon\Carbon::parse($location["echeance_date"])->locale('fr')->isoFormat('D MMMM YYYY') }}<small class="text-dark">({{ $location->pre_paid?"PRE_PAYE":"" }} {{ $location->post_paid ? "POST_PAYE":'' }})</small>
+                                <span class=" border rounded text-red text-uppercase  bg-light text-dark">
+                                    {{ \Carbon\Carbon::parse($location["echeance_date"])->locale('fr')->isoFormat('D MMMM YYYY') }}<small class="text-dark">({{ $location->pre_paid?"PRE_PAYE":"" }} {{ $location->post_paid ? "POST_PAYE":'' }})</small>
                                 </span>
                                 @else
                                 <textarea name="" rows="1" class="form-control" placeholder="Démenagé le {{ \Carbon\Carbon::parse($location['move_date'])->locale('fr')->isoFormat('D MMMM YYYY') }} par {{$location->MovedBy?->name}} ; Commentaire: ({{$location->move_comments}})"></textarea>
@@ -465,7 +465,7 @@
 
                                         @can("location.edit")
                                         <li>
-                                            <button class="w-100 btn btn-sm bg-warning" onclick="editLocation({{$location}})" data-bs-toggle="modal" data-bs-target="#updateModal"><i class="bi bi-person-lines-fill"></i> Modifier</button>
+                                            <button class="w-100 btn btn-sm bg-red" onclick="editLocation({{$location}})" data-bs-toggle="modal" data-bs-target="#updateModal"><i class="bi bi-person-lines-fill"></i> Modifier</button>
                                         </li>
                                         @endcan
                                         @endif
@@ -497,7 +497,7 @@
                         </tr>
 
                         <!-- ###### MODEL DE SHOW DES FACTURES ###### -->
-                        <div class="modal fade" id="shoFactures_{{$location['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade animate__animated animate__fadeInUp" id="shoFactures_{{$location['id']}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -517,7 +517,7 @@
                                                     <strong>Montant: </strong> {{$facture->amount}} <br>
                                                     <strong>Fichier: </strong> <a href="{{$facture->facture}}" class="" rel="noopener noreferrer"><i class="bi bi-eye"></i></a><br>
                                                     <strong>Date d'écheance: </strong> {{Change_date_to_text($facture->echeance_date)}} <br>
-                                                    <strong>Status: </strong> <span class=" @if($facture->status==1) bg-warning @elseif($facture->status==2) bg-success @else bg-danger @endif "> {{$facture->Status->description}}</span> <br>
+                                                    <strong>Status: </strong> <span class=" @if($facture->status==1) bg-red @elseif($facture->status==2) bg-success @else bg-danger @endif "> {{$facture->Status->description}}</span> <br>
                                                     <strong>Description: </strong> <textarea class="form-control" name="" rows="1" placeholder="{{$facture->comments}}" id=""></textarea>
                                                 </li>
                                                 @endforeach
@@ -538,11 +538,11 @@
     </div>
 
     <!-- ###### MODEL D'ENCAISSEMENT ###### -->
-    <div class="modal fade" id="encaisse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="encaisse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title fs-5" id="exampleModalLabel">Encaissement </h6>
+                    <h6 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-wallet"></i> Encaissement </h6>
                 </div>
                 <div class="modal-body">
                     <div class="">
@@ -550,7 +550,7 @@
                         <strong>Chambre: <em class="text-red location_room"> </em> </strong> <br>
                         <strong>Locataire: <em class="text-red location_locataire"></em> </strong>
                     </div>
-                    <form method="POST" id="encaisserForm" class="shadow-lg p-3 animate__animated animate__bounce p-3" enctype="multipart/form-data">
+                    <form method="POST" id="encaisserForm" class="p-3 border rounded" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="location" class="location">
 
@@ -619,11 +619,11 @@
     </div>
 
     <!-- ###### MODEL DE DEMENAGEMENT ###### -->
-    <div class="modal fade" id="demenage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="demenage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title fs-5" id="exampleModalLabel">Démenagement </h6>
+                    <h6 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-folder-minus"></i> Démenagement </h6>
                 </div>
                 <div class="modal-body">
                     <div class="">
@@ -632,7 +632,7 @@
                         <strong>Locataire: <em class="text-red location_locataire"></em> </strong>
                     </div>
                 </div>
-                <form action="{{route('location.DemenageLocation')}}" id="demenageForm" method="POST" class="shadow-lg p-3 animate__animated animate__bounce p-3">
+                <form action="{{route('location.DemenageLocation')}}" id="demenageForm" method="POST" class="p-3 rounded border">
                     @csrf
                     @method("POST")
                     <input type="hidden" name="locationId" id="locationId">
@@ -648,11 +648,11 @@
     </div>
 
     <!-- ###### MODEL DE MODIFICATION ###### -->
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade animate__animated animate__fadeInUp" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h6 class="modal-title fs-5" id="exampleModalLabel">Modification </h6>
+                    <h6 class="modal-title fs-5" id="exampleModalLabel"><i class="bi bi-pencil"></i> Modification </h6>
                 </div>
                 <div class="modal-body">
                     <div class="">
@@ -660,7 +660,7 @@
                         <strong>Chambre: <em class="text-red location_room"> </em> </strong> <br>
                         <strong>Locataire: <em class="text-red location_locataire"></em> </strong>
                     </div>
-                    <form id="updateForm" method="POST" class="shadow-lg p-2">
+                    <form id="updateForm" method="POST" class="p-3 border rounded">
                         @csrf
                         @method("PATCH")
                         <div class="row">
@@ -785,9 +785,11 @@
             } else {
                 console.error("Element with id 'locationId' not found!");
             }
+
         }
 
         function encaisser(location) {
+
             $(".location_name").html(location.house.name)
             $(".location_room").html(location.room.number)
             $(".location_locataire").html(location.locataire.name + " " + location.locataire.prenom)
@@ -816,9 +818,11 @@
                 $(".prorata_amount").val(location.prorata_amount)
                 $(".prorata_date").val(location.locataire.prorata_date)
             }
+
         }
 
         function editLocation(location) {
+
             $(".location_name").html(location.house.name)
             $(".location_room").html(location.room.number)
             $(".location_locataire").html(location.locataire.name + " " + location.locataire.prenom)
@@ -831,6 +835,7 @@
             $(".frais_peiture").val(location.frais_peiture)
             $(".prestation").val(location.prestation)
             $(".numero_contrat").val(location.numero_contrat)
+
         }
 
         // IMPRESSION
@@ -857,22 +862,23 @@
             $('#loading').removeAttr('hidden');
 
             axios.get("{{env('API_BASE_URL')}}location/" + locationSelected + "/retrieve")
-            .then((response) => {
-                var location = response.data
-                var location_locataire = location["locataire"]
+                .then((response) => {
+                    var location = response.data
+                    var location_locataire = location["locataire"]
 
-                $("#encaisse_date_info").removeAttr("hidden")
-                $("#encaisse_date").val(location.next_loyer_date)
+                    $("#encaisse_date_info").removeAttr("hidden")
+                    $("#encaisse_date").val(location.next_loyer_date)
 
-                // alert(location_locataire)
-                if (location_locataire.prorata) {
-                    $("#prorata_infos").removeAttr("hidden")
-                    $("#prorata_date").removeAttr("hidden")
-                    $("#prorata_date").val(location_locataire.prorata_date)
-                }
-            }).catch(() => {
-                //alert("une erreure s'est produite")
-            })
+                    // alert(location_locataire)
+                    if (location_locataire.prorata) {
+                        $("#prorata_infos").removeAttr("hidden")
+                        $("#prorata_date").removeAttr("hidden")
+                        $("#prorata_date").val(location_locataire.prorata_date)
+                    }
+
+                }).catch(() => {
+                    //alert("une erreure s'est produite")
+                })
         }
 
         function houseSelect(_val = null) {

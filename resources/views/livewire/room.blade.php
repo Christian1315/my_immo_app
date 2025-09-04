@@ -3,12 +3,12 @@
     <div class="d-flex gap-2 mb-3">
         @can("room.add.type")
         <button type="button" class="btn btn-sm bg-light shadow rounded" data-bs-toggle="modal" data-bs-target="#room_type">
-            <i class="bi bi-cloud-plus-fill"></i> Ajouter un type de chambre
+            <i class="bi bi-node-plus"></i> Ajouter un type de chambre
         </button>
         @endcan
         @can("room.add.nature")
         <button type="button" class="btn btn-sm bg-light shadow rounded" data-bs-toggle="modal" data-bs-target="#room_nature">
-            <i class="bi bi-cloud-plus-fill"></i> Ajouter une nature de chambre
+            <i class="bi bi-node-plus"></i> Ajouter une nature de chambre
         </button>
         @endcan
     </div>
@@ -18,7 +18,7 @@
     <div class="d-flex header-bar">
         <h2 class="accordion-header">
             <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#addRoom">
-                <i class="bi bi-cloud-plus-fill"></i> Ajouter une chambre
+                <i class="bi bi-node-plus"></i> Ajouter une chambre
             </button>
         </h2>
     </div>
@@ -45,14 +45,14 @@
                 <h4 class="mb-0">Total: <strong class="text-red">{{count($rooms)}}</strong></h4>
                 <div class="d-flex gap-2">
                     <button class="btn btn-sm bg-light border border-dark">
-                        Libre <i class="bi text-primary bi-geo-alt-fill"></i>;
+                        Libre <i class="bi text-success bi-geo-alt-fill"></i>;
                         Occupée: <i class="bi text-red bi-geo-alt-fill"></i>
                     </button>
                     <button class="btn btn-sm btn-light">
                         Chambres Occupées: <strong class="text-red">{{$buzy_rooms_count}}</strong>
                     </button>
                     <button class="btn btn-sm btn-light">
-                        Chambres Libres: <strong class="text-primary">{{$free_rooms_count}}</strong>
+                        Chambres Libres: <strong class="text-success">{{$free_rooms_count}}</strong>
                     </button>
                 </div>
             </div>
@@ -79,26 +79,26 @@
                             <td class="text-center">{{$loop->index + 1}} </td>
                             <td class="text-center">
                                 {{$room["number"]}}
-                                <i class="bi {{$room->buzzy() ? 'text-red' : 'text-primary'}} bi-geo-alt-fill"></i>
+                                <i class="bi {{$room->buzzy() ? 'text-red' : 'text-success'}} bi-geo-alt-fill"></i>
                             </td>
                             <td class="text-center">
-                                <span class=" bg-light text-dark">{{$room["House"]["name"]}}</span>
+                                <span class="badge border rounded bg-light text-dark">{{$room["House"]["name"]}}</span>
                             </td>
                             <td class="text-center">
-                                <span class=" bg-light text-dark">{{$room["House"]["Supervisor"]["name"]}}</span>
+                                <span class="badge rounded border bg-light text-dark">{{$room["House"]["Supervisor"]["name"]}}</span>
                             </td>
                             <td class="text-center">
-                                <span class=" bg-dark">{{number_format((int) $room["loyer"],0,","," ")}}</span>
+                                <span class="badage rounded border bg-dark">{{number_format((int) $room["loyer"],0,","," ")}}</span>
                             </td>
                             <td class="text-center">
-                                <span class=" bg-warning">{{number_format($room->LocativeCharge(),0,","," ")}}</span>
+                                <span class="badge rounded border bg-red">{{number_format($room->LocativeCharge(),0,","," ")}}</span>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-sm btn-light text-red">
+                                <span class="badge rounded border text-red">
                                     {{number_format($room["total_amount"],0,","," ")}} fcfa
-                                </button>
+                                </span>
                             </td>
-                            <td class="text-center">{{$room["Type"]['name']}}</td>
+                            <td class="text-center"><span class="badge bg-light text-dark border rounded"> {{$room["Type"]['name']}}</span></td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-sm btn-light"
                                     data-bs-toggle="modal"
@@ -115,7 +115,7 @@
                                     <ul class="dropdown-menu">
                                         @can("room.edit")
                                         <li>
-                                            <a href="#" class="dropdown-item btn btn-sm bg-warning"
+                                            <a href="#" class="dropdown-item btn btn-sm bg-red"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#updateModal"
                                                 onclick="updateRoom({{$room['id']}})">
