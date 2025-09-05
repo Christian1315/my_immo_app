@@ -9,7 +9,10 @@ function show_rooms_fun(id) {
         showConfirmButton: false,
         footer: `<div class="spinner-border" role="status">
                                     <span class="visually-hidden">En cours de traitement ...</span>
-                                </div>`
+                                </div>`,
+        didOpen: () => {
+            Swal.showLoading();
+        }
     });
 
     axios.get(`${API_BASE_URL}house/${id}/retrieve`)

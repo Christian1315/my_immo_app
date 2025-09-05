@@ -39,6 +39,10 @@
         <!-- select2 -->
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+        <!-- Thème Bootstrap 5 pour Select2 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
+
+
         @livewireStyles
         @stack("styles")
     </head>
@@ -477,6 +481,7 @@
     <!--  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     <script>
         const dropdownButton = document.querySelector('.dropdown-button');
         const dropdown = document.querySelector('.dropdown');
@@ -534,14 +539,18 @@
     <!--  DATA TABLES -->
     <script>
         // In your Javascript (external .js resource or <script> tag)
-        $('.agency-select2').select2();
+        $('.agency-select2').select2({
+            width: '100%',
+            theme: "bootstrap-5",
+            placeholder: $(this).data('placeholder'),
+        });
 
         $(document).ready(function() {
             $(document).on('shown.bs.modal', '.modal', function() {
                 $(this).find('.agency-modal-select2').each(function() {
                     $(this).select2({
                         width: '100%',
-                        // theme:"bootstrap",
+                        theme: "bootstrap-5",
                         placeholder: $(this).data('placeholder'),
                         dropdownParent: $(this).closest('.modal'),
                         allowClear: true
