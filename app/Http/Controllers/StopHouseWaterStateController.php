@@ -41,8 +41,8 @@ class StopHouseWaterStateController extends Controller
             $facturesArray = $factures->pluck('amount')->toArray();
             $facturesSum = array_sum($facturesArray);
             
-            $paidFacturesSum = $factures->where('paid', true)->sum('amount');
-            $unpaidFacturesSum = $factures->where('paid', false)->sum('amount');
+            $paidFacturesSum = $factures->sum('amount');
+            $unpaidFacturesSum = $factures->sum('amount');
 
             $pdf = Pdf::loadView('water-state', [
                 'state' => $state,

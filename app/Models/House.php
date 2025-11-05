@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  */
+
 class House extends Model
 {
     use HasFactory;
@@ -46,6 +47,7 @@ class House extends Model
     public const STATUS_DELETED = 3;
 
     protected $fillable = [
+        "reference",
         "agency",
         "name",
         "latitude",
@@ -196,5 +198,13 @@ class House extends Model
     public function WaterFacturesStates(): HasMany
     {
         return $this->hasMany(StopHouseWaterState::class, "house");
+    }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "HOUSE-" . time() . "-XXX";
+        });
     }
 }

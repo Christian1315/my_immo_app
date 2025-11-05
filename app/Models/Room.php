@@ -89,4 +89,12 @@ class Room extends Model
     {
         return $this->Locations()->exists();
     }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "ROOM-" . time() . "-XXX";
+        });
+    }
 }

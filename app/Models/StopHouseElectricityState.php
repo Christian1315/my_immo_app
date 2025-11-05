@@ -13,6 +13,7 @@ class StopHouseElectricityState extends Model
 
     protected $table = "stop_house_electricity_states";
     protected $fillable = [
+        "reference",
         "owner",
         "house",
         "state_stoped_day",
@@ -31,5 +32,13 @@ class StopHouseElectricityState extends Model
     function StatesFactures(): HasMany
     {
         return $this->hasMany(LocationElectrictyFacture::class, "state")->with(["Location"]);
+    }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "HOUSE-ELEC-STATE" . time() . "-XXX";
+        });
     }
 }

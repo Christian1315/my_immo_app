@@ -201,7 +201,7 @@ class UserController extends Controller
                 alert()->success('Succès', "Vous etes connecté(e) avec succès!!");
                 return redirect()->route("dashbord");
             } else {
-                alert()->error('Echec', "Connexion échouée!!");
+                alert()->error('Echec', "Connexion échouée! Verifiez vos informatiosn et réessayer à nouveau");
                 return redirect()->back()->withInput();
             }
         } catch (\Illuminate\Validation\ValidationException $e) {

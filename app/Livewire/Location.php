@@ -115,6 +115,7 @@ class Location extends Component
             $this->locations = $this->current_agency
                 ->_Locations
                 ->where("status", "!=", 3)
+                ->limit(20)
                 ->filter(function ($location) use ($supervisorsIds) {
                     return in_array($location->House->supervisor, $supervisorsIds);
                 });
@@ -123,6 +124,7 @@ class Location extends Component
             $this->locations = $user->hasRole("Superviseur") ?
                 $this->current_agency->_Locations
                 ->where("status", "!=", 3)
+                ->limit(20)
                 ->filter(fn($location) => $location->House->supervisor == $user->id) :
                 $this->current_agency->_Locations
                 ->where("status", "!=", 3);

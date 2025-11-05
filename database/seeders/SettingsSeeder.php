@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CardType;
 use App\Models\Securite\User;
 use App\Models\User as ModelsUser;
 use App\Models\UserRole;
@@ -15,94 +16,6 @@ class SettingsSeeder extends Seeder
 
     function run()
     {
-        #======== CREATION DES ACTIONS PAR DEFAUT=========#
-        $actions = [
-            [
-                'name' => "list_houses",
-                'description' => "Lister les maisons",
-                'visible' => true
-            ],
-            [
-                'name' => "add_house",
-                'description' => "Ajouter une maison",
-                'visible' => true
-            ]
-        ];
-
-        foreach ($actions as $action) {
-            \App\Models\Action::factory()->create($action);
-        }
-
-        #======== CREATION DES PROFILS PAR DEFAUT=========#
-        $profils = [
-            [
-                "name" => "Système",
-                "description" => "Gestionnaire du Système",
-            ],
-            [
-                "name" => "Responsable",
-                "description" => "Le Responsable du compte",
-            ],
-            [
-                "name" => "Technicien",
-                "description" => "Un Technicien de votre structure ou de FRIKLABEL",
-            ],
-            [
-                "name" => "Employe",
-                "description" => "Un Employe de votre structure",
-            ],
-            [
-                "name" => "Agency",
-                "description" => "Un Distributeur de votre structure",
-            ],
-            [
-                "name" => "Master",
-                "description" => "Master distributeur",
-            ],
-            [
-                "name" => "Agent",
-                "description" => "Agent commercial",
-            ],
-            [
-                "name" => "Client",
-                "description" => "Client",
-            ],
-            [
-                "name" => "Admin",
-                "description" => "L'administrateur",
-            ],
-        ];
-
-        foreach ($profils as $profil) {
-            \App\Models\Profil::factory()->create($profil);
-        }
-        #======== CREATION DES RANGS PAR DEFAUT=========#
-
-        $rangs = [
-            [
-                "name" => "admin",
-                "description" => "L'administrateur général du networking",
-            ],
-            [
-                "name" => "moderator",
-                "description" => "Le modérateur du compte",
-            ],
-            [
-                "name" => "user",
-                "description" => "Un simple utilisateur du compte",
-            ],
-        ];
-        foreach ($rangs as $rang) {
-            \App\Models\Rang::factory()->create($rang);
-        }
-
-        #======== CREATION DES RIGHTS  PAR DEFAUT =========#
-        $rights = [];
-
-        foreach ($rights as $right) {
-            \App\Models\Right::factory()->create($right);
-        }
-
         ###======== CREATION DES USERS PAR DEFAUT==========###
         $users = [
             [
@@ -2916,6 +2829,19 @@ class SettingsSeeder extends Seeder
         foreach ($houseTypes as $houseType) {
             \App\Models\HouseType::factory()->create($houseType);
         };
+
+
+        ##======== CREATION DES TYPES DE CARD ============####
+        $cardTypes = [
+            [
+                "name" => "LEPI",
+            ],
+            [
+                "name" => "Passport",
+            ],
+        ];
+
+        CardType::insert($cardTypes);
 
         ##======== CREATION DES DEPARTEMENTS ============####
         $departements = [

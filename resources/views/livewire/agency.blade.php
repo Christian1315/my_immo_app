@@ -145,7 +145,7 @@
                             <th class="text-center">Email</th>
                             <th class="text-center">City</th>
                             <th class="text-center">Rccm</th>
-                            <th class="text-center">Statistique</th>
+                            <!-- <th class="text-center">Statistique</th> -->
                             <th class="text-center">Ifu</th>
                             <th class="text-center">Action</th>
                         </tr>
@@ -166,9 +166,9 @@
                                 ---
                                 @endif
                             </td>
-                            <td class="text-center">
+                            <!-- <td class="text-center">
                                 <a href="/{{$agency['id']}}/show_prestation_statistique" class="btn btn-sm bg-dark shadow-lg"><i class="bi bi-list-ol"></i> Prestation</a>
-                            </td>
+                            </td> -->
                             <td class="text-center">
                                 @if($agency->ifu_file)
                                 <a href="{{$agency->ifu_file}}" class="text-red" rel="noopener noreferrer"><i class="bi bi-eye"></i></a>

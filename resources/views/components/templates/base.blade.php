@@ -42,7 +42,6 @@
         <!-- Thème Bootstrap 5 pour Select2 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
 
-
         @livewireStyles
         @stack("styles")
     </head>
@@ -477,12 +476,10 @@
         });
     </script>
 
-
     <!--  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-    <script>
+    <script type="text/javascript">
         const dropdownButton = document.querySelector('.dropdown-button');
         const dropdown = document.querySelector('.dropdown');
 
@@ -534,10 +531,8 @@
                 }
             });
         })
-    </script>
 
-    <!--  DATA TABLES -->
-    <script>
+        // 
         // In your Javascript (external .js resource or <script> tag)
         $('.agency-select2').select2({
             width: '100%',
@@ -558,7 +553,10 @@
                 });
             });
         })
+    </script>
 
+    <!--  DATA TABLES -->
+    <script>
         $(function() {
             $("#myTable").DataTable({
                     "paging": true,
@@ -566,6 +564,9 @@
                     "lengthChange": true,
                     "autoWidth": true,
                     "buttons": ["excel", "pdf", "print"],
+                    // 💡 ADD THE DOM CONFIGURATION
+                    // "dom": '<"row"<"col-md-6"B><"col-md-6"f>><"row"<"col-sm-12"tr>><"row"<"col-sm-5"i><"col-sm-7"p>>',
+
                     "order": [
                         [0, 'desc']
                     ],

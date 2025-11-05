@@ -70,33 +70,66 @@ class Location extends Model
      * @var array<string>
      */
     protected $fillable = [
+        "reference",
         // Location basic info
-        'agency', 'house', 'room', 'locataire', 'type', 'status', 'payment_mode',
-        'numero_contrat', 'comments', 'visible',
+        'agency',
+        'house',
+        'room',
+        'locataire',
+        'type',
+        'status',
+        'payment_mode',
+        'numero_contrat',
+        'comments',
+        'visible',
 
         // Financial information
-        'caution_bordereau', 'loyer', 'pre_paid', 'post_paid', 'prestation',
-        'caution_water', 'caution_electric', 'total_amount', 'discounter',
-        'kilowater_price', 'water_unpaid', 'electric_unpaid', 'prorata_amount',
+        'caution_bordereau',
+        'loyer',
+        'pre_paid',
+        'post_paid',
+        'prestation',
+        'caution_water',
+        'caution_electric',
+        'total_amount',
+        'discounter',
+        'kilowater_price',
+        'water_unpaid',
+        'electric_unpaid',
+        'prorata_amount',
 
         // Dates
-        'next_loyer_date', 'echeance_date', 'latest_loyer_date', 'effet_date',
-        'integration_date', 'previous_echeance_date',
+        'next_loyer_date',
+        'echeance_date',
+        'latest_loyer_date',
+        'effet_date',
+        'integration_date',
+        'previous_echeance_date',
 
         // Counters and measurements
-        'water_counter', 'electric_counter', 'frais_peiture', 'prorata_days',
+        'water_counter',
+        'electric_counter',
+        'frais_peiture',
+        'prorata_days',
 
         // Documents and images
-        'img_contrat', 'img_prestation', 'caution_number',
+        'img_contrat',
+        'img_prestation',
+        'caution_number',
 
         // Move related
-        'moved_by', 'move_date', 'move_comments',
+        'moved_by',
+        'move_date',
+        'move_comments',
 
         // Suspension related
-        'suspend_by', 'suspend_date', 'suspend_comments',
+        'suspend_by',
+        'suspend_date',
+        'suspend_comments',
 
         // Other
-        'owner', 'delete_at'
+        'owner',
+        'delete_at'
     ];
 
     /**
@@ -134,8 +167,15 @@ class Location extends Model
     {
         return $this->belongsTo(House::class, "house")
             ->with([
-                "Owner", "Proprietor", "Type", "Supervisor",
-                "City", "Country", "Departement", "Quartier", "Zone"
+                "Owner",
+                "Proprietor",
+                "Type",
+                "Supervisor",
+                "City",
+                "Country",
+                "Departement",
+                "Quartier",
+                "Zone"
             ]);
     }
 
@@ -146,7 +186,7 @@ class Location extends Model
     {
         return $this->belongsTo(Locataire::class, "locataire")
             ->with(["Owner", "CardType", "Departement", "Country"])
-            ;
+        ;
     }
 
     /**
@@ -172,7 +212,7 @@ class Location extends Model
     {
         return $this->belongsTo(Room::class, "room")
             ->with(["Owner", "House", "Nature", "Type"])
-            ;
+        ;
     }
 
     /**
@@ -246,5 +286,13 @@ class Location extends Model
     public function MovedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, "moved_by");
+    }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "LOCATION-" . time() . "-XXX";
+        });
     }
 }

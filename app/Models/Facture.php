@@ -11,6 +11,7 @@ class Facture extends Model
     use HasFactory;
 
     protected $fillable = [
+        'reference',
         "owner",
         "payement",
         "location",
@@ -66,9 +67,18 @@ class Facture extends Model
     /**
      * Scope pour récupérer les factures d'un état donné pour une liste de locations
      */
-    public function scopeForHouseLastState($query, $locationIds, $stateId) {
+    public function scopeForHouseLastState($query, $locationIds, $stateId)
+    {
         return $query->whereIn('location', $locationIds)
-                     ->where('state', $stateId)
-                     ->where('state_facture', 0);
+            ->where('state', $stateId)
+            ->where('state_facture', 0);
+    }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "FAC-" . time() . "-XXX";
+        });
     }
 }

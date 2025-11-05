@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('stop_house_electricity_states', function (Blueprint $table) {
             $table->id();
+            $table->string("reference")->nullable();
             $table->foreignId("owner")
                 ->nullable()
                 ->constrained("users", "id")

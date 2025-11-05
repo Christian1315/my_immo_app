@@ -2,6 +2,7 @@
     <thead class="bg_dark">
         <tr>
             <th class="text-center">N°</th>
+            <th class="text-center">Reference</th>
             <th class="text-center">Nom</th>
             <th class="text-center">Latitude</th>
             <th class="text-center">Longitude</th>
@@ -19,6 +20,7 @@
         @foreach (session('filteredHouses') ? session('filteredHouses') : $houses as $house)
         <tr class="align-items-center">
             <td class="text-center">{{ $loop->index + 1 }}</td>
+            <td class="text-center"><span class="badge bg-light border rounded text-dark">{{$house->reference}}</span></td>
             <td class="text-center">
                 <span class="badge border rounded bg-light text-dark">
                     {{ $house['name'] }}
@@ -124,4 +126,4 @@
         </tr>
         @endforeach
     </tbody>
-</table> 
+</table>

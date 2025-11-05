@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
+            $table->string("reference")->nullable();
             $table->foreignId("agency")
                 ->nullable()
                 ->constrained("agencies", "id")

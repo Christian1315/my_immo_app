@@ -397,7 +397,7 @@ class AdminController extends Controller
             $activeLocations = $current_agency
                 ->_Locations
                 ->where("status", "!=", 3)
-                ->filter(fn($location) => $location->Room?->electricity);
+                ->filter(fn($location) => $location->Room?->water);
 
             $debut = $request->debut;
             $fin = $request->fin;
@@ -608,7 +608,8 @@ class AdminController extends Controller
                 /** Factures validées avant le dernier état */
                 $houseFacturesQuery = Facture::whereIn("location", $locationsIds)
                     ->where("status", 2)
-                    ->where('created_at', "<", $last_state->created_at);
+                    ->where('created_at', "<", $last_state->created_at)
+                    ->limit(5);
 
 
                 if ($request->month) {
@@ -622,7 +623,7 @@ class AdminController extends Controller
                 /** Transformation en tableau formaté */
                 $locatorFormatted = $houseFactures->map(function ($facture) use ($house, $last_state) {
                     return (object) [
-                        "name"          => trim(($facture->Location->Locataire?->name ?? '') . ' ' . ($facture->Location->Locataire?->prenom ?? '')),
+                        "name"          => trim(($facture->Location?->Locataire?->name ?? '') . ' ' . ($facture->Location->Locataire?->prenom ?? '')),
                         "house_name"    => $house->name,
                         "supervisor"    => $house->Supervisor?->name,
                         "phone"         => $facture->Location->Locataire?->phone,
@@ -728,7 +729,9 @@ class AdminController extends Controller
                 /** Factures validées avant le dernier état */
                 $houseFacturesQuery = Facture::whereIn("location", $locationsIds)
                     ->where("status", 2)
-                    ->where('created_at', ">", $last_state->created_at);
+                    ->where('created_at', ">", $last_state->created_at)
+                    ->limit(5);
+                    // ;
 
                 if ($request->month) {
                     $dateMonth = \Carbon\Carbon::createFromFormat('Y-m', $request->month);

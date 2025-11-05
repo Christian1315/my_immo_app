@@ -11,6 +11,7 @@ class StopHouseWaterState extends Model
 {
     use HasFactory;
     protected $fillable = [
+        "reference",
         "owner",
         "house",
         "state_stoped_day",
@@ -29,5 +30,13 @@ class StopHouseWaterState extends Model
     function StatesFactures(): HasMany
     {
         return $this->hasMany(LocationWaterFacture::class, "state")->with(["Location"]);
+    }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "HOUSE-WATER-STATE" . time() . "-XXX";
+        });
     }
 }

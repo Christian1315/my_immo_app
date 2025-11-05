@@ -14,6 +14,7 @@ class HomeStopState extends Model
 
     protected $table = "home_stop_states";
     protected $fillable = [
+        "reference",
         "owner",
         "house",
         "stats_stoped_day",
@@ -49,5 +50,13 @@ class HomeStopState extends Model
     function PaiementInitiations(): HasMany
     {
         return $this->hasMany(PaiementInitiation::class, "state");
+    }
+
+    /**Boot */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->reference = "HOME-STATE" . time() . "-XXX";
+        });
     }
 }
