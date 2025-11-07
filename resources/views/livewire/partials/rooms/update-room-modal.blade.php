@@ -18,7 +18,7 @@
 
                             </div><br>
                             <div class="mb-3">
-                                <label for="" class="d-block">Numéro de chambre</label>
+                                <label for="" class="d-block">Numéro d'appartement</label>
                                 <input type="text" id="number" name="number" placeholder="Numéro de la chambre" class="form-control">
 
                             </div><br>

@@ -218,7 +218,7 @@ class HouseController extends Controller
     public function FiltreHouseBySupervisor(Request $request, $agency)
     {
         try {
-            $agency = Agency::findOrFail($agency);
+            $agency = Agency::with("_Houses")->findOrFail($agency);
             $user = Auth::user();
 
             if ($user->hasRole("Gestionnaire de compte")) {

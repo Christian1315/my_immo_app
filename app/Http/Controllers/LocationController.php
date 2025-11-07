@@ -734,6 +734,13 @@ class LocationController extends Controller
             // Validation des données de paiement
             $this->validatePaymentData($formData);
 
+            $location = Location::with("factures")->find($request->location);
+
+            $facturesNonTraites = $location->factures->where("status", 1);
+            if ($facturesNonTraites->isNotEmpty()) {
+                throw new \Exception("Cette location dispose des factures non traitées! Veuillez les traiter d'abord avant d'éffectuer un nouvel encaissement!", 1);
+            }
+
             // Récupération de la location avec ses relations
             $location = $this->getLocationWithRelations($formData["location"]);
 

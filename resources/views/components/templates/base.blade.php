@@ -185,7 +185,7 @@
                                     <a class="nav-link text-white @if($active == 'room') active @endif"
                                         href="/{{ crypId($agency['id']) }}/room">
                                         <i class="bi bi-hospital-fill"></i>
-                                        Chambres
+                                        Appartements
                                     </a>
                                 </li>
                                 @endcan
@@ -239,6 +239,17 @@
                                 </li>
                                 @endcan
 
+                                <!-- les factures -->
+                                @can ("invoices.view")
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($active == 'facture') active @endif text-white"
+                                        href="/{{ crypId($agency['id']) }}/factures">
+                                        <i class="bi bi-file-pdf"></i>
+                                        Factures
+                                    </a>
+                                </li>
+                                @endcan
+
                                 <!-- PAIEMENT -->
                                 @can("proprio.payement.view")
                                 <li class="nav-item">
@@ -257,17 +268,6 @@
                                         href="/{{ crypId($agency['id']) }}/initiation">
                                         <i class="bi bi-cash-coin"></i>
                                         Valider paiement
-                                    </a>
-                                </li>
-                                @endcan
-
-                                <!-- les factures -->
-                                @can ("invoices.view")
-                                <li class="nav-item">
-                                    <a class="nav-link @if ($active == 'facture') active @endif text-white"
-                                        href="/{{ crypId($agency['id']) }}/factures">
-                                        <i class="bi bi-file-pdf"></i>
-                                        Factures
                                     </a>
                                 </li>
                                 @endcan

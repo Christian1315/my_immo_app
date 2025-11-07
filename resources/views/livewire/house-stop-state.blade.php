@@ -153,6 +153,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">N°</th>
+                            <th class="text-center">Reference</th>
                             <th class="text-center">Le responsable de l'arrêt</th>
                             <th class="text-center">Date d'arrêt</th>
                         </tr>
@@ -161,6 +162,7 @@
                         @foreach($house["states"] as $state)
                         <tr class="align-items-center">
                             <td class="text-center">{{$loop->index+1}}</td>
+                            <td class="text-center">{{$state->reference}}</td>
                             <td class="text-center"> {{$state["Owner"]["name"]}} </td>
                             <td class="text-center"> <span class="btn btn-sm p-1 bg-red">{{ \Carbon\Carbon::parse($state["stats_stoped_day"])->locale('fr')->isoFormat('D MMMM YYYY') }}</span> </td>
                         </tr>

@@ -142,9 +142,9 @@ function updateRoom(id) {
             $("#loyer").val(room.loyer);
             $("#number").val(room.number);
             $("#gardiennage").val(room.gardiennage);
-            $("#rubbish").val(room.rubbish);
-            $("#vidange").val(room.vidange);
-            $("#cleaning").val(room.cleaning);
+            $("#update_rubbish").val(room.rubbish);
+            $("#update_vidange").val(room.vidange);
+            $("#update_cleaning").val(room.cleaning);
             $("#comments").val(room.comments);
 
             $("#update_btncheck_electricity").prop('checked', room.electricity)

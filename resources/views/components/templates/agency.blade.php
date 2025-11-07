@@ -180,6 +180,17 @@
                                 </li>
                                 @endcan
 
+                                <!-- les factures -->
+                                @can ("invoices.view")
+                                <li class="nav-item">
+                                    <a class="nav-link @if ($active == 'facture') active @endif text-white"
+                                        href="/{{ crypId($agency['id']) }}/factures">
+                                        <i class="bi bi-file-pdf"></i>
+                                        Factures
+                                    </a>
+                                </li>
+                                @endcan
+
                                 <!-- PAIEMENT -->
                                 @can("proprio.payement.view")
                                 <li class="nav-item">
@@ -201,18 +212,6 @@
                                     </a>
                                 </li>
                                 @endcan
-
-                                <!-- les factures -->
-                                @can ("invoices.view")
-                                <li class="nav-item">
-                                    <a class="nav-link @if ($active == 'facture') active @endif text-white"
-                                        href="/{{ crypId($agency['id']) }}/factures">
-                                        <i class="bi bi-file-pdf"></i>
-                                        Factures
-                                    </a>
-                                </li>
-                                @endcan
-
 
                                 <!-- CAISSES -->
                                 @can("caisses.view")

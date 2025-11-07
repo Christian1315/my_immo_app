@@ -172,11 +172,11 @@
 
                                 <div class="mb-3 d-flex">
                                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                        <input type="checkbox" name="pre_paid" class="btn-check" id="pre_paid" autocomplete="off">
+                                        <input type="checkbox" name="pre_paid" class="mx-1 _btn-check" id="pre_paid" autocomplete="off">
                                         <label class="btn bg-dark text-white" for="pre_paid">Prépayé</label>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                        <input type="checkbox" name="post_paid" class="btn-check" id="post_paid" autocomplete="off">
+                                        <input type="checkbox" name="post_paid" class="mx-1 _btn-check" id="post_paid" autocomplete="off">
                                         <label class="btn bg-dark text-white" for="post_paid">Post-Payé</label>
                                     </div>
                                 </div>

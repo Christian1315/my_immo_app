@@ -1,5 +1,7 @@
 <div>
-    <h6 class="">caisse :<em class="text-red"> {{$Account["name"]}} </em> </h6>
+    <h6 class="">Nom :<em class="text-red"> {{$Account["name"]}} </em></h6>
+    <h6 class="">Description :<em class="text-red"> {{$Account["description"]}} </em> </h6>
+    
     <table id="myTable" class="table table-striped table-sm">
         <thead class="bg_dark">
             <tr>

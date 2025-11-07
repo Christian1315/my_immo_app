@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="locatorsModalLabel">
-                   <i class="bi bi-person"></i> Les Locataires de la chambre : <strong class="text-red" id="room_number"></strong>
+                   <i class="bi bi-person"></i> Les Locataires de l' appartement: <strong class="text-red" id="room_number"></strong>
                 </h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>

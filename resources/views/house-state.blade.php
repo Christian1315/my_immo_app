@@ -85,7 +85,7 @@
                     <tbody>
                         <tr>
                             <td class="text">
-                                <img src="{{public_path('edou_logo.png')}}" alt="" style="width: 100px;" class="rounded img-fluid">
+                                <img src="{{public_path('logo.png')}}" alt="" style="width: 100px;" class="rounded img-fluid">
                             </td>
 
                             <td class="text" style="padding-left: 100px!important;">

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5"><i class="bi bi-node-plus"></i> Type de chambre</h5>
+                <h5 class="modal-title fs-5"><i class="bi bi-node-plus"></i> Type d'Appartement</h5>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal">
                     <i class="bi bi-x-circle"></i>
                 </button>

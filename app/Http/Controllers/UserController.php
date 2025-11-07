@@ -140,15 +140,15 @@ class UserController extends Controller
                 $create_user->assignRole($request->input("role"));
             }
 
-            try {
-                Send_Notification(
-                    $create_user,
-                    "Création de compte sur IMMO ERP",
-                    "Votre compte à été crée avec succès sur IMMO ERP. Veuillez utiliser cet identifiant pour vous connecter : " . $formData['username'],
-                );
-            } catch (\Throwable $th) {
-                Log::error("Erreur lors de l'envoi de notification: " . $th->getMessage());
-            }
+            // try {
+            //     Send_Notification(
+            //         $create_user,
+            //         "Création de compte sur IMMO ERP",
+            //         "Votre compte à été crée avec succès sur IMMO ERP. Veuillez utiliser cet identifiant pour vous connecter : " . $formData['username'],
+            //     );
+            // } catch (\Throwable $th) {
+            //     Log::error("Erreur lors de l'envoi de notification: " . $th->getMessage());
+            // }
 
             DB::commit();
 

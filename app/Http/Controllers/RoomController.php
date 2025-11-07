@@ -119,7 +119,7 @@ class RoomController extends Controller
         try {
             $this->validate($request, self::VALIDATION_RULES['room_type'], self::VALIDATION_MESSAGES);
             RoomType::create($request->all());
-            return $this->successResponse('Type de chambre ajouté avec succès!');
+            return $this->successResponse('Type d\'appartement ajouté avec succès!');
         } catch (ValidationException $e) {
             return $this->errorResponse($e->getMessage());
         }
@@ -130,7 +130,7 @@ class RoomController extends Controller
         try {
             $this->validate($request, self::VALIDATION_RULES['room_type'], self::VALIDATION_MESSAGES);
             RoomNature::create($request->all());
-            return $this->successResponse('Nature de chambre ajoutée avec succès!');
+            return $this->successResponse('Nature d\'appartement ajoutée avec succès!');
         } catch (ValidationException $e) {
             return $this->errorResponse($e->getMessage());
         }
@@ -164,14 +164,14 @@ class RoomController extends Controller
 
             // Vérification de l'unicité du numéro de chambre
             if ($this->isRoomNumberExists($request->number, $request->house)) {
-                return $this->errorResponse('Cette chambre existe déjà dans cette maison!');
+                return $this->errorResponse('Cet appartement  existe déjà dans cette maison!');
             }
 
             $formData = $this->prepareRoomData($request);
             Room::create($formData);
 
             DB::commit();
-            return $this->successResponse('Chambre ajoutée avec succès!');
+            return $this->successResponse('Appartement ajouté avec succès!');
         } catch (ValidationException $e) {
             DB::rollBack();
             return back()
@@ -204,7 +204,7 @@ class RoomController extends Controller
             $this->updateRelatedLocations($room);
 
             DB::commit();
-            return $this->successResponse('Chambre modifiée avec succès!');
+            return $this->successResponse('Appartement modifié avec succès!');
         } catch (\Exception $e) {
             DB::rollBack();
             return $this->errorResponse('Une erreur est survenue');
@@ -221,7 +221,7 @@ class RoomController extends Controller
             }
 
             $room->delete();
-            return $this->successResponse('Chambre supprimée avec succès!');
+            return $this->successResponse('Appartement supprimé avec succès!');
         } catch (\Exception $e) {
             return $this->errorResponse('Une erreur est survenue: ' . $e->getMessage());
         }

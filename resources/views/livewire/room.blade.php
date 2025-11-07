@@ -1,14 +1,14 @@
 <div>
-    <!-- AJOUT D'UN TYPE DE CHAMBRE -->
+    <!-- AJOUT D'UN TYPE DE Appartement -->
     <div class="d-flex gap-2 mb-3">
         @can("room.add.type")
         <button type="button" class="btn btn-sm bg-light shadow rounded" data-bs-toggle="modal" data-bs-target="#room_type">
-            <i class="bi bi-node-plus"></i> Ajouter un type de chambre
+            <i class="bi bi-node-plus"></i> Ajouter un type d'appartement
         </button>
         @endcan
         @can("room.add.nature")
         <button type="button" class="btn btn-sm bg-light shadow rounded" data-bs-toggle="modal" data-bs-target="#room_nature">
-            <i class="bi bi-node-plus"></i> Ajouter une nature de chambre
+            <i class="bi bi-node-plus"></i> Ajouter une nature d'appartement
         </button>
         @endcan
     </div>
@@ -18,7 +18,7 @@
     <div class="d-flex header-bar">
         <h2 class="accordion-header">
             <button type="button" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#addRoom">
-                <i class="bi bi-node-plus"></i> Ajouter une chambre
+                <i class="bi bi-node-plus"></i> Ajouter un appartement
             </button>
         </h2>
     </div>
@@ -49,10 +49,10 @@
                         Occupée: <i class="bi text-red bi-geo-alt-fill"></i>
                     </button>
                     <button class="btn btn-sm btn-light">
-                        Chambres Occupées: <strong class="text-red">{{$buzy_rooms_count}}</strong>
+                        Appartements Occupées: <strong class="text-red">{{$buzy_rooms_count}}</strong>
                     </button>
                     <button class="btn btn-sm btn-light">
-                        Chambres Libres: <strong class="text-success">{{$free_rooms_count}}</strong>
+                        Appartements Libres: <strong class="text-success">{{$free_rooms_count}}</strong>
                     </button>
                 </div>
             </div>
@@ -62,13 +62,14 @@
                     <thead class="bg_dark">
                         <tr>
                             <th class="text-center">N°</th>
-                            <th class="text-center">Chambre</th>
+                            <th class="text-center">Reference</th>
+                            <th class="text-center">Appartement</th>
                             <th class="text-center">Maison</th>
                             <th class="text-center">Superviseur</th>
                             <th class="text-center">Loyer brut</th>
                             <th class="text-center">Charge locatives</th>
                             <th class="text-center">Loyer Total</th>
-                            <th class="text-center">Type de Chambre</th>
+                            <th class="text-center">Type de Appartement</th>
                             <th class="text-center">Locataires</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -77,6 +78,7 @@
                         @foreach($rooms as $room)
                         <tr class="align-items-center">
                             <td class="text-center">{{$loop->index + 1}} </td>
+                            <td class="text-center"><span class="badge bg-light rounded text-dark border"> {{$room->reference}} </span></td>
                             <td class="text-center">
                                 {{$room["number"]}}
                                 <i class="bi {{$room->buzzy() ? 'text-red' : 'text-success'}} bi-geo-alt-fill"></i>

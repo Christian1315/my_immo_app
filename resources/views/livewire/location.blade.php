@@ -212,7 +212,7 @@
                                 <div class="mb-3" id="roomsShow" hidden>
                                     <label class="d-block" for="">Chambre</label>
                                     <select class="form-select form-control agency-modal-select2" name="room" id="rooms" aria-label="Default select example">
-
+                                        <!-- js -->
                                     </select>
                                     @error("room")
                                     <span class="text-red">{{$message}}</span>
@@ -298,7 +298,7 @@
                                 </div><br>
                                 <div class="mb-3">
                                     <label class="d-block" for="">Numéro du compteur électrique</label>
-                                    <input value="{{old('electric_counter')}}" type="text" name="electric_counter" class="form-control" placeholder="Compteur électricité ....">
+                                    <input value="{{old('electric_counter')}}" type="text" name="electric_counter" class="form-control" placeholder="Compteur électricité ...." required>
                                     @error("electric_counter")
                                     <span class="text-red">{{$message}}</span>
                                     @enderror
@@ -342,11 +342,11 @@
 
                                 <div class="mb-3 d-flex">
                                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                        <input type="checkbox" name="pre_paid" class="btn-check" id="pre_paid" autocomplete="off">
+                                        <input type="checkbox" name="pre_paid" class="mx-1 _btn-check" id="pre_paid" autocomplete="off">
                                         <label class="btn bg-dark text-white" for="pre_paid">Prépayé</label>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                        <input type="checkbox" name="post_paid" class="btn-check" id="post_paid" autocomplete="off">
+                                        <input type="checkbox" name="post_paid" class="mx-1 _btn-check" id="post_paid" autocomplete="off">
                                         <label class="btn bg-dark text-white" for="post_paid">Post-Payé</label>
                                     </div>
                                 </div>
@@ -395,7 +395,7 @@
                     <div id="buttons"></div>
                     <thead class="bg_dark">
                         <tr>
-                            <!-- <th class="text-center">N°</th> -->
+                            <th class="text-center">Reference</th>
                             <th class="text-center">Maison <span class="d-block d-sm-none"> | Locataire | Loyer | Dernier mois Payé</span></th>
                             <th class="text-center">Propriétaire</th>
                             <th class="text-center">Superviseur</th>
@@ -416,7 +416,7 @@
                         $location_echeance_date = strtotime(date("Y/m/d", strtotime($location->echeance_date)));
                         @endphp
                         <tr class="align-items-center @if($location->status==3) bg-secondary text-white @elseif($location_echeance_date < $now) bg-red @endif ">
-                            <!-- <td class="text-center">{{$loop->index+1}} </td> -->
+                            <td class="text-center"> <span class="badge bg-ligt rounded border rounded text-dark"> {{$location->reference}} </span></td>
                             <td class="text-left">
                                 <span class="badge border rounded bg-light text-dark">{{$location->House?->name}}</span>
                                 <span class=" border rounded bg-light text-dark d-block d-sm-none">
@@ -714,7 +714,7 @@
                                 </div><br>
                                 <div class="mb-3">
                                     <label class="d-block" for="">Numéro du compteur eau ...</label>
-                                    <input type="text" name="water_counter" placeholder="Compteur eau..." class="form-control water_counter">
+                                    <input type="text" name="water_counter" placeholder="Compteur eau..." class="form-control water_counter" required>
                                 </div><br>
 
                             </div>
@@ -726,7 +726,7 @@
                                 </div><br>
                                 <div class="mb-3">
                                     <label class="d-block" for="">Caution eau</label>
-                                    <input type="text" required name="caution_water" class="form-control caution_water" placeholder="Caution eau ....">
+                                    <input type="text" required name="caution_water" class="form-control caution_water" placeholder="Caution eau ...." value="0">
 
                                 </div><br>
                                 <div class="mb-3">
@@ -740,15 +740,15 @@
                                 </div><br>
                                 <div class="mb-3">
                                     <label class="d-block" for="">Nbr de caution loyer</label>
-                                    <input type="number" name="caution_number" class="form-control caution_number" placeholder="Nombre de caution loyer ....">
+                                    <input type="number" name="caution_number" class="form-control caution_number" placeholder="Nombre de caution loyer ...." value="0">
                                 </div><br>
                                 <div class="mb-3">
                                     <span>Frais de reprise de peinture</span><br>
-                                    <input type="number" name="frais_peiture" class="form-control frais_peiture" placeholder="Frais de reprise de peinture ....">
+                                    <input type="number" name="frais_peiture" class="form-control frais_peiture" placeholder="Frais de reprise de peinture ...." value="0">
                                 </div><br>
                                 <div class="mb-3">
                                     <label class="d-block" for="">Prestation</label>
-                                    <input type="number" name="prestation" placeholder="La prestation..." class="form-control prestation">
+                                    <input type="number" name="prestation" placeholder="La prestation..." class="form-control prestation" value="0">
                                 </div><br>
                                 <div class="mb-3">
                                     <label class="d-block">Numéro contrat</label>
@@ -900,7 +900,7 @@
                 $('#loading').attr("hidden", "hidden");
 
             }).catch(() => {
-                //alert("une erreure s'est produite")
+                alert("une erreure s'est produite")
             })
         }
 

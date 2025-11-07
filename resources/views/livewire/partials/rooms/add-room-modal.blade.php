@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <p class=""><i class="bi bi-node-plus"></i> Ajout d'une Chambre</p>
+                <p class=""><i class="bi bi-node-plus"></i> Ajout d'un Appartement</p>
                 <button type="button" class="btn btn-sm text-red" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
             </div>
             <div class="modal-body">
@@ -20,8 +20,8 @@
                                 @enderror
                             </div><br>
                             <div class="mb-3">
-                                <label for="" class="d-block">Numéro de chambre</label>
-                                <input type="text" value="{{old('number')}}" name="number" placeholder="Numéro de la chambre" class="form-control">
+                                <label for="" class="d-block">Numéro de Appartement</label>
+                                <input type="text" value="{{old('number')}}" name="number" placeholder="Numéro de l' Appartement" class="form-control">
                                 @error("number")
                                 <span class="text-red">{{$message}}</span>
                                 @enderror
@@ -48,7 +48,7 @@
                                 @enderror
                             </div><br>
                             <div class="mb-3">
-                                <span class=""> Photo de la chambre </span>
+                                <span class=""> Photo de l' Appartement </span>
                                 <input value="{{old('photo')}}" type="file" name="photo" class="form-control">
                                 @error("photo")
                                 <span class="text-red">{{$message}}</span>
@@ -176,7 +176,7 @@
                             </div><br>
 
                             <div class="mb-3">
-                                <input onclick="showElectricityInfo()" type="checkbox" name="electricity" class="btn-check" id="btncheck_electricity">
+                                <input onclick="showElectricityInfo()" type="checkbox" name="electricity" class="btn-check " id="btncheck_electricity">
                                 <label onclick="showElectricityInfo()" class="btn bg-dark" for="btncheck_electricity">
                                     Electricité ... <br>
                                 </label>

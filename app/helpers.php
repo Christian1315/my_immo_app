@@ -396,13 +396,14 @@ function User_Rights($rangId, $profilId)
 #######____GET HOUSE DETAIL ======######
 function GET_HOUSE_DETAIL($house)
 {
-    $house->load(["PayementInitiations", "Supervisor"]);
+    $house->load(["Locations", "PayementInitiations", "Supervisor"]);
 
     // Get the last state once
     $house_last_state = $house->States->last();
 
     // Get active locations
-    $locations = $house->Locations->where("status", "!=", 3);
+    $locations = $house->Locations
+        ->where("status", "!=", 3);
 
     // Initialize collections for calculations
     $house_factures = collect();
@@ -416,9 +417,11 @@ function GET_HOUSE_DETAIL($house)
             $location_factures = Facture::where([
                 'location' => $location->id,
                 'state_facture' => 0
-            ])->whereBetween("created_at", [$house_last_state->created_at, now()])->get();
+            ])->whereBetween("created_at", [$house_last_state->created_at, now()])
+                ->where("status", 2)
+                ->get();
         } else {
-            $location_factures = $location->Factures;
+            $location_factures = $location->Factures->where("status", 2);
         }
 
         $house_factures = $house_factures->concat($location_factures);
@@ -429,8 +432,8 @@ function GET_HOUSE_DETAIL($house)
 
         // Add tenant information
         $location->_locataire = [
-            'nbr_month_paid' => $location->Factures->count(),
-            'nbr_facture_amount_paid' => $location->Factures->sum('amount'),
+            'nbr_month_paid' => $location->Factures->where("status",2)->count(),
+            'nbr_facture_amount_paid' => $location->Factures->where("status",2)->sum('amount'),
             'houses' => $location->House,
             'rooms' => $location->Room
         ];

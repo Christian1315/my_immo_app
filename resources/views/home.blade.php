@@ -24,13 +24,13 @@
                             <div class="text-center mb-4 logo-container">
                                 <img src="{{ asset('logo.png')}}"
                                     alt="ADJIV Logo"
-                                    class="img-fluid mb-3 logo-image"
+                                    class="img-fluid mb-3 logo-image shadow-sm rounded border"
                                     style="max-width: 70px; height: auto;">
                             </div>
 
                             <h3 class="text-center text-dark">Connectez-vous ici! </h3>
                             <div class="input-group">
-                                <span class="input-group-text p-2" id="basic-addon1"><i class="bi bi-person-lock"></i></span>
+                                <span class="input-group-text p-2" id="basic-addon1"><i class="bi bi-envelope-at"></i></span>
                                 <input type="text" value="{{old('account')}}" autofocus name="account" class="form-control" placeholder="Votre identifiant ....">
                                 @error("account")
                                 <span class="text-danger"> {{$message}} </span>
