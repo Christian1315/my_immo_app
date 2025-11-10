@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
@@ -18,8 +19,8 @@ class LocatorController extends Controller
             $rooms[] = $location->Room;
         };
 
-        $locator["houses"] = $houses;
-        $locator["rooms"] = $rooms;
+        $locator["houses"] = collect($houses)->unique("id")->values();
+        $locator["rooms"] = collect($rooms)->unique("id")->values();
         return response()->json($locator);
     }
 }

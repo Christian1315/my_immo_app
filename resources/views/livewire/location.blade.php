@@ -765,11 +765,14 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            houseSelect($('#houseSelection').val())
-        })
+    <script>
+        window.onload = function() {
+            alert("javascript calling...");
+            houseSelect(1);
+        };
+    </script>
 
+    <script type="text/javascript">
         function demenage(location) {
             console.log("Location object:", location);
 
@@ -882,6 +885,7 @@
         }
 
         function houseSelect(_val = null) {
+            alert($('#houseSelection').val())
             var houseSelected = _val ? _val : $('#houseSelection').val()
             $('#rooms').empty();
 

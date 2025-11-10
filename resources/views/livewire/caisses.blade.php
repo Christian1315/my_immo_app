@@ -24,7 +24,7 @@
                                     <select name="agency_account" required class="form-select form-control agency-modal-select2" aria-label="Default select example">
                                         @foreach($agencyAccounts as $agency_account)
                                         @if($agency_account->_Account->id!=4 && $agency_account->_Account->id!=9 && $agency_account->_Account->id!=5)
-                                        <option value="{{$agency_account->id}}" data-account="{{$agency_account->_Account->id}}"> {{$agency_account->_Account->name}} --- <em class="text-danger">( solde actuel: @if($agency_account->AgencyCurrentSold){{$agency_account->AgencyCurrentSold->sold}} @else 0 @endif)</em> </option>
+                                        <option value="{{$agency_account->id}}" data-account="{{$agency_account->_Account->id}}"> {{$agency_account->_Account?->description}} --- <em class="text-danger">( solde actuel: @if($agency_account->AgencyCurrentSold){{$agency_account->AgencyCurrentSold->sold}} @else 0 @endif)</em> </option>
                                         @endif
                                         @endforeach
                                     </select>

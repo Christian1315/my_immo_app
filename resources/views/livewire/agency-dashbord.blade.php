@@ -59,7 +59,7 @@
                                             data-prorata-date="{{$location->Locataire?->prorata_date}}"
                                             data-latest-loyer-date="{{$location->latest_loyer_date}}"
                                             >
-                                            Maison: {{$location->House?->name}} | Chambre : {{$location->Room?->number}} | Locataire: {{$location->Locataire?->name}} {{$location->Locataire?->prenom}}
+                                           Reference: {{$location->reference}} Maison: {{$location->House?->name}} | Chambre : {{$location->Room?->number}} | Locataire: {{$location->Locataire?->name}} {{$location->Locataire?->prenom}}
                                         </option>
                                         @endforeach
                                     </select>
@@ -206,7 +206,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-red"><i class="bi bi-person-lines-fill"></i> Propriétaires</h5>
                     <p class="card-text">Liste des Propriétaires ({{$proprietors_count}}) </p>
+                    @can("proprio.view")
                     <a href="/{{crypId($current_agency['id'])}}/proprietor" class="btn bg-dark">Voir détail &nbsp; <i class="bi bi-arrow-right-circle"></i></a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -215,7 +217,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-red"><i class="bi bi-house-gear-fill"></i> Maisons</h5>
                     <p class="card-text">Liste des Maisons ({{$houses_count}} ) </p>
+                    @can("house.view")
                     <a href="/{{crypId($current_agency['id'])}}/house" class="btn bg-dark">Voir détail &nbsp; <i class="bi bi-arrow-right-circle"></i></a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -224,7 +228,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-red"><i class="bi bi-person-fill-gear"></i> Locataires</h5>
                     <p class="card-text">Liste des Locataires ({{$locators_count}})</p>
+                    @can("locator.view")
                     <a href="/{{crypId($current_agency['id'])}}/locator" class="btn bg-dark">Voir détail &nbsp; <i class="bi bi-arrow-right-circle"></i></a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -233,7 +239,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-red"><i class="bi bi-pin-map-fill"></i> Locations</h5>
                     <p class="card-text">Liste des Locations ({{$locations_count}}) </p>
+                    @can("location.view")
                     <a href="/{{crypId($current_agency['id'])}}/location" class="btn bg-dark">Voir détail &nbsp; <i class="bi bi-arrow-right-circle"></i></a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -242,7 +250,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-red"><i class="bi bi-hospital"></i> Chambres</h5>
                     <p class="card-text">Liste des Chambres ({{$rooms_count}})</p>
+                    @can("room.view")
                     <a href="/{{crypId($current_agency['id'])}}/room" class="btn bg-dark">Voir détail &nbsp; <i class="bi bi-arrow-right-circle"></i></a>
+                    @endcan
                 </div>
             </div>
         </div>
@@ -262,7 +272,9 @@
                 <div class="card-body">
                     <h5 class="card-title text-red"><i class="bi bi-receipt"></i> Factures</h5>
                     <p class="card-text">Liste des Factures ({{$factures_count}}) </p>
+                    @can("invoices.view")
                     <a href="/{{crypId($current_agency['id'])}}/factures" class="btn bg-dark">Voir détail &nbsp; <i class="bi bi-arrow-right-circle"></i></a>
+                    @endcan
                 </div>
             </div>
         </div>

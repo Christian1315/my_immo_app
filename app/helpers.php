@@ -384,7 +384,6 @@ function Is_User_Has_A_Supervisor_Role($userId)
     return $result;
 }
 
-
 ##======== CE HELPER PERMET DE RECUPERER LES DROITS D'UN UTILISATEUR ==========## 
 function User_Rights($rangId, $profilId)
 { #
