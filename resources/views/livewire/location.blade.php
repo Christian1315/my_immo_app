@@ -765,13 +765,6 @@
         </div>
     </div>
 
-    <script>
-        window.onload = function() {
-            alert("javascript calling...");
-            houseSelect(1);
-        };
-    </script>
-
     <script type="text/javascript">
         function demenage(location) {
             console.log("Location object:", location);
